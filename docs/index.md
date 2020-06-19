@@ -16,7 +16,7 @@ True-Alarm is easy to set up and only requires 4 key pieces of information to do
   - The time you want to arrive at your destination
   - And how much time you want between waking up and departing (buffer time)
 
-#Easy to Edit
+# Easy to Edit
 Pressing the EDIT ALARM button at the bottom of the ALARMS screen will take you to the ALARM CREATION screen where you can select which alarm you'd like to edit from a dropdown list in the upper left corner. You can change your addresses, buffer time, and alarm name from here.
 
 # Under the Hood (TL;DR)
@@ -53,7 +53,7 @@ A possible additional feature will be that the user is notified 5min before thei
 * [Google Maps - Distance Matrix API](https://developers.google.com/maps/documentation/distance-matrix/intro)
 
 True-Alarm will be able to act as a general purpose alarm clock if disconnected from the Google Maps service. If it becomes disconnected from Google Maps at any point after the alarm creation, the alarm would simply remain set at its most recent set time.
-The user could also theoretically only input an Arrival Time and the alarm would go off at that time, using it in an even more basic capacity. 
+The user could also theoretically only input an Arrival Time and the alarm would go off at that time, using it in an even more basic capacity.
 This application would not be able to function, however, without the AlarmManager and RingtoneManager APIs.  
 
 
