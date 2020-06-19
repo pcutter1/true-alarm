@@ -1,8 +1,8 @@
 theme: jekyll-theme-time-machine
 title: True-Alarm
-description: An alarm that adjusts to your commute time
+description: "It's not false!"
 titles_from_headings:
   enabled: false
-show_downloads: true
+show_downloads: false
 name: "Paul Cutter"
 href: "https://github.com/pcutter1"
