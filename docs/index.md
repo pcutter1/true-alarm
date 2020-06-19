@@ -8,18 +8,18 @@ description: It's not false!
 
 True-Alarm is a fresh new take on an alarm application. Designed for the driving commuter, True-Alarm will wake you up not at a specific time, but at the time you need to be woken up. It uses the google maps API to assess your commute time, and based on that time it will wake you up earlier or later as traffic changes. All you need to do is enter a start location, destination location, what time you want to want to arrive, and how much time you want between waking up and walking out the door! Whether it's rain delays or road closures, True-Alarm will make sure you're up in time to get where you need to go!
 
-## How It Works
-# Set-Up
+# How It Works
+## Set-Up
 True-Alarm is easy to set up and only requires 4 key pieces of information to do its job. Simply press the plus-sign button to take you to the ALARM CREATION screen. There you will input the following:
   - A starting address
   - A destination address
   - The time you want to arrive at your destination
   - And how much time you want between waking up and departing (buffer time)
 
-# Easy to Edit
+## Easy to Edit
 Pressing the EDIT ALARM button at the bottom of the ALARMS screen will take you to the ALARM CREATION screen where you can select which alarm you'd like to edit from a dropdown list in the upper left corner. You can change your addresses, buffer time, and alarm name from here.
 
-# Under the Hood (TL;DR)
+## Under the Hood (TL;DR)
 True-Alarm uses the Google Distance Matrix API (GDMA) to get real-time updates based on live traffic data to return your commute time. Providing a start location, end location, and arrival time will allow the GDMA's traffic_model to return a duration_in_traffic estimate and suggested departure time. These are based on historical traffic data and live traffic data, with live traffic data becomes more important the closer it gets to the actual departure time.
 
 
