@@ -57,7 +57,17 @@ The user could also theoretically only input an Arrival Time and the alarm would
 This application would not be able to function, however, without the AlarmManager and RingtoneManager APIs.  
 
 
-## Design documentation
+## Design Documentation
 
 * [Wireframe diagram](wireframe.md)
 * [Entity Relationship Diagram](erd.md)
+
+## Entity Classes
+
+* [Alarm Entity](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/model/entity/Alarm.java)
+* [Location Entity](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/model/entity/Location.java)
+
+## Dao'n Town
+
+* [Alarm Dao](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/model/dao/AlarmDao.java)
+* [Location Dao](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/model/dao/LocationDao.java)
