@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 import edu.cnm.deepdive.truealarm.model.entity.Alarm;
 import edu.cnm.deepdive.truealarm.model.entity.Location;
@@ -22,15 +23,20 @@ public interface LocationDao {
  Single<List<Long>> insert(Location... locations);
 
  @Update
- Single<Long> update(Location... locations);
+ Single<Integer> update(Location... locations);
 
  @Delete
- Single<Long> delete (Location... locations);
+ Single<Integer> delete (Location... locations);
 
+ @Transaction
  @Query("SELECT * FROM Location ORDER BY name")
- LiveData<Location> selectAll();
+ LiveData<List<Location>> selectAll();
 
+ @Query("SELECT * FROM Location WHERE location_id = :locationId")
+ Single<Location> selectById(long locationId);
+
+ @Transaction
  @Query("SELECT * FROM Location ORDER BY address")
- LiveData<Location> selectByAddress();
+ LiveData<List<Location>> selectByAddress();
 
 }

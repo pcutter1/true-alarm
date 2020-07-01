@@ -11,13 +11,13 @@ import androidx.room.PrimaryKey;
     foreignKeys = {@ForeignKey(
         entity = Location.class,
         parentColumns = "location_id",
-        childColumns = "location_id",
+        childColumns = "start_location_id",
         onDelete = ForeignKey.SET_NULL
     ),
         @ForeignKey(
             entity = Location.class,
             parentColumns = "location_id",
-            childColumns = "location_id",
+            childColumns = "end_location_id",
             onDelete = ForeignKey.SET_NULL
         )
     }
@@ -41,11 +41,11 @@ public class Alarm {
   @ColumnInfo(name = "alert_buffer")
   private int buffer = 0;
 
-  @ColumnInfo(name = "start_location")
-  private long startLocation;
+  @ColumnInfo(name = "start_location_id")
+  private long startLocationId;
 
-  @ColumnInfo(name = "end_location")
-  private long endLocation;
+  @ColumnInfo(name = "end_location_id")
+  private long endLocationId;
 
   public long getId() {
     return id;
@@ -87,22 +87,24 @@ public class Alarm {
     this.buffer = buffer;
   }
 
-  public long getStartLocation() {
-    return startLocation;
+  public long getStartLocationId() {
+    return startLocationId;
   }
 
-  public void setStartLocation(long startLocation) {
-    this.startLocation = startLocation;
+  public void setStartLocationId(long startLocation) {
+    this.startLocationId = startLocation;
   }
 
-  public long getEndLocation() {
-    return endLocation;
+  public long getEndLocationId() {
+    return endLocationId;
   }
 
-  public void setEndLocation(long endLocation) {
-    this.endLocation = endLocation;
+  public void setEndLocationId(long endLocation) {
+    this.endLocationId = endLocation;
   }
 
+  //TODO Figure out if I need these overrides.
+  /*
   @Override
   public int hashCode() {
     return name.toLowerCase().hashCode();
@@ -118,4 +120,6 @@ public class Alarm {
   public String toString() {
     return super.toString();
   }
+
+   */
 }

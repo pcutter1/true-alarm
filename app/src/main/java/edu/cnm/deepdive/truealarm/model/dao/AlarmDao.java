@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 import edu.cnm.deepdive.truealarm.model.entity.Alarm;
 import io.reactivex.Single;
@@ -26,13 +27,17 @@ public interface AlarmDao {
   @Delete
   Single<Integer> delete(Alarm... alarms);
 
+  @Transaction
   @Query("SELECT * FROM Alarm ORDER BY name")
-  LiveData<Alarm> selectAll();
+  LiveData<List<Alarm>> selectAll();
 
-  @Query("SELECT * FROM Alarm WHERE end_location = :endLocation")
-  LiveData<Alarm> selectByEndLocation(long endLocation);
+  @Query("SELECT * FROM Alarm WHERE alarm_id = :alarmId")
+  Single<Alarm> selectById(long alarmId);
 
-  @Query("SELECT * FROM Alarm WHERE start_location = :startLocation")
-  LiveData<Alarm> selectByStartLocation(long startLocation);
+  @Query("SELECT * FROM Alarm WHERE end_location_id = :endLocationId")
+  LiveData<Alarm> selectByEndLocation(long endLocationId);
+
+  @Query("SELECT * FROM Alarm WHERE start_location_id = :startLocationId")
+  LiveData<Alarm> selectByStartLocation(long startLocationId);
 
 }

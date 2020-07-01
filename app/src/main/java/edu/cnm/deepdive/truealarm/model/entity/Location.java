@@ -69,6 +69,9 @@ public class Location {
     this.name = name;
   }
 
+
+  //TODO Figure out if I need these overrides.
+  /*
   @Override
   public int hashCode() {
     return super.hashCode();
@@ -85,4 +88,6 @@ public class Location {
   public String toString() {
     return super.toString();
   }
+
+   */
 }
