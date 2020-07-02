@@ -35,12 +35,14 @@ public class Alarm {
   @ColumnInfo(name = "is_set")
   private boolean isSet;
 
+  //TODO Look into localDateTime
   @ColumnInfo(name = "arrival_time")
   private int arriveBy;
 
   @ColumnInfo(name = "alert_buffer")
   private int buffer = 0;
 
+  //TODO Update ERD for indeces
   @ColumnInfo(name = "start_location_id", index = true)
   private long startLocationId;
 

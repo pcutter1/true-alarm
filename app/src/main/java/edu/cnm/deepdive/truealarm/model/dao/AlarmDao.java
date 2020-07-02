@@ -27,17 +27,18 @@ public interface AlarmDao {
   @Delete
   Single<Integer> delete(Alarm... alarms);
 
-  @Transaction
   @Query("SELECT * FROM Alarm ORDER BY name")
   LiveData<List<Alarm>> selectAll();
 
   @Query("SELECT * FROM Alarm WHERE alarm_id = :alarmId")
   Single<Alarm> selectById(long alarmId);
 
+  /*
   @Query("SELECT * FROM Alarm WHERE end_location_id = :endLocationId")
-  LiveData<Alarm> selectByEndLocation(long endLocationId);
+  Single<Alarm> selectByEndLocation(long endLocationId);
 
   @Query("SELECT * FROM Alarm WHERE start_location_id = :startLocationId")
-  LiveData<Alarm> selectByStartLocation(long startLocationId);
+  Single<Alarm> selectByStartLocation(long startLocationId);
+   */
 
 }
