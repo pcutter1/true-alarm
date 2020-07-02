@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "53c518186d2488ea0a9d6cca5085f0f4",
+    "identityHash": "fcb5a6a831c06ab10a4a68bc69bf82a8",
     "entities": [
       {
         "tableName": "Alarm",
@@ -57,7 +57,24 @@
           ],
           "autoGenerate": true
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_Alarm_start_location_id",
+            "unique": false,
+            "columnNames": [
+              "start_location_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Alarm_start_location_id` ON `${TABLE_NAME}` (`start_location_id`)"
+          },
+          {
+            "name": "index_Alarm_end_location_id",
+            "unique": false,
+            "columnNames": [
+              "end_location_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Alarm_end_location_id` ON `${TABLE_NAME}` (`end_location_id`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "Location",
@@ -141,7 +158,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '53c518186d2488ea0a9d6cca5085f0f4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fcb5a6a831c06ab10a4a68bc69bf82a8')"
     ]
   }
 }

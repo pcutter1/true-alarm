@@ -41,10 +41,10 @@ public class Alarm {
   @ColumnInfo(name = "alert_buffer")
   private int buffer = 0;
 
-  @ColumnInfo(name = "start_location_id")
+  @ColumnInfo(name = "start_location_id", index = true)
   private long startLocationId;
 
-  @ColumnInfo(name = "end_location_id")
+  @ColumnInfo(name = "end_location_id", index = true)
   private long endLocationId;
 
   public long getId() {
