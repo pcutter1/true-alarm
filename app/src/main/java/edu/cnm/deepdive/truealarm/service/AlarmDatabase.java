@@ -5,10 +5,12 @@ import android.app.Application;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverter;
 import edu.cnm.deepdive.truealarm.model.dao.AlarmDao;
 import edu.cnm.deepdive.truealarm.model.dao.LocationDao;
 import edu.cnm.deepdive.truealarm.model.entity.Alarm;
 import edu.cnm.deepdive.truealarm.model.entity.Location;
+import java.util.Date;
 
 @Database(
     entities = {Alarm.class, Location.class},
@@ -40,5 +42,18 @@ public abstract class AlarmDatabase extends RoomDatabase {
         Room.databaseBuilder(context, AlarmDatabase.class, DB_NAME).build();
   }
 
+  public static class Converters {
+
+    @TypeConverter
+    public static Long dateToLong(Date value) {
+      return (value != null) ? value.getTime() : null;
+    }
+
+    @TypeConverter
+    public static Date longToDate(Long value) {
+      return (value != null) ? new Date(value) : null;
+    }
+
+  }
 
 }
