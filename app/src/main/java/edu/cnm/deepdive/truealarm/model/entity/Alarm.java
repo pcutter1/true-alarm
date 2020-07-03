@@ -35,7 +35,6 @@ public class Alarm {
   @ColumnInfo(name = "is_set")
   private boolean isSet;
 
-  //TODO Look into localDateTime
   @ColumnInfo(name = "arrival_time")
   private int arriveBy;
 
