@@ -72,6 +72,6 @@ This application would not be able to function, however, without the AlarmManage
 * [Alarm Dao](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/model/dao/AlarmDao.java)
 * [Location Dao](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/model/dao/LocationDao.java)
 
-## Data Documentation Language
+## Data Definition Language
 
 * [SQLite DDL](ddl.md)
