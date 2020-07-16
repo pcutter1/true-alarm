@@ -41,7 +41,6 @@ public class Alarm {
   @ColumnInfo(name = "alert_buffer")
   private int buffer = 0;
 
-  //TODO Update ERD for indeces
   @ColumnInfo(name = "start_location_id", index = true)
   private long startLocationId;
 

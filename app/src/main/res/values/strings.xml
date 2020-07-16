@@ -10,5 +10,15 @@
   <string name="title_dashboard">Dashboard</string>
   <string name="title_notifications">Notifications</string>
 
+  <string-array name="alarms_array">
+    <item>Alarm 1</item>
+    <item>Alarm 2</item>
+    <item>Alarm 3</item>
+  </string-array>
+
   <string name="home_second">Home Second</string>
+  <string name="settings_title">Settings</string>
+  <string name="snooze_title">Snooze</string>
+  <string name="alarm_tone_title">Alarm Tone</string>
+  <string name="traffic_mode_title">Traffic Mode</string>
 </resources>

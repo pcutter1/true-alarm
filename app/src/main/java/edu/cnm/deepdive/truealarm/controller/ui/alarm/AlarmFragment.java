@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.truealarm.controller.ui.notifications;
+package edu.cnm.deepdive.truealarm.controller.ui.alarm;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,18 +12,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import edu.cnm.deepdive.truealarm.R;
 
+public class AlarmFragment extends Fragment {
 
-public class NotificationsFragment extends Fragment {
-
-  private NotificationsViewModel notificationsViewModel;
+  private AlarmViewModel alarmViewModel;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
-    notificationsViewModel =
-        ViewModelProviders.of(this).get(NotificationsViewModel.class);
-    View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-    final TextView textView = root.findViewById(R.id.text_notifications);
-    notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+    alarmViewModel =
+        ViewModelProviders.of(this).get(AlarmViewModel.class);
+    View root = inflater.inflate(R.layout.fragment_alarm, container, false);
+    final TextView textView = root.findViewById(R.id.text_dashboard);
+    alarmViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
       @Override
       public void onChanged(@Nullable String s) {
         textView.setText(s);
