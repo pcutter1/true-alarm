@@ -20,7 +20,7 @@ public class AlarmFragment extends Fragment {
       ViewGroup container, Bundle savedInstanceState) {
     alarmViewModel =
         ViewModelProviders.of(this).get(AlarmViewModel.class);
-    View root = inflater.inflate(R.layout.fragment_alarm, container, false);
+    View root = inflater.inflate(R.layout.fragment_alarm_detail, container, false);
     final TextView textView = root.findViewById(R.id.text_dashboard);
     alarmViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
       @Override

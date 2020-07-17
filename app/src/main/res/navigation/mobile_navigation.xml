@@ -11,33 +11,17 @@
     android:name="edu.cnm.deepdive.truealarm.controller.ui.home.HomeFragment"
     tools:layout="@layout/fragment_home">
 
-    <action
-      android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-      app:destination="@id/navigation_home_second"/>
-  </fragment>
-  <fragment
-    android:id="@+id/navigation_home_second"
-    android:label="@string/home_second"
-    android:name="edu.cnm.deepdive.truealarm.controller.ui.home.HomeSecondFragment"
-    tools:layout="@layout/fragment_home_second">
-    <action
-      android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
-      app:destination="@id/navigation_home"/>
-
-    <argument
-      android:name="myArg"
-      app:argType="string"/>
   </fragment>
 
   <fragment
     android:id="@+id/navigation_dashboard"
-    android:label="@string/title_dashboard"
+    android:label="@string/title_alarm_details"
     android:name="edu.cnm.deepdive.truealarm.controller.ui.alarm.AlarmFragment"
-    tools:layout="@layout/fragment_alarm"/>
+    tools:layout="@layout/fragment_alarm_detail"/>
 
   <fragment
     android:id="@+id/navigation_notifications"
-    android:label="@string/title_notifications"
+    android:label="@string/title_settings"
     android:name="edu.cnm.deepdive.truealarm.controller.ui.settings.SettingsFragment"
     tools:layout="@layout/fragment_settings"/>
 </navigation>
