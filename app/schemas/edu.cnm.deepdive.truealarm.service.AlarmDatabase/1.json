@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "fcb5a6a831c06ab10a4a68bc69bf82a8",
+    "identityHash": "0191c6ffe52b538fc7ad8bd6f9986557",
     "entities": [
       {
         "tableName": "Alarm",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`alarm_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT COLLATE NOCASE, `is_set` INTEGER NOT NULL, `arrival_time` INTEGER NOT NULL, `alert_buffer` INTEGER NOT NULL, `start_location_id` INTEGER NOT NULL, `end_location_id` INTEGER NOT NULL, FOREIGN KEY(`start_location_id`) REFERENCES `Location`(`location_id`) ON UPDATE NO ACTION ON DELETE SET NULL , FOREIGN KEY(`end_location_id`) REFERENCES `Location`(`location_id`) ON UPDATE NO ACTION ON DELETE SET NULL )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`alarm_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL COLLATE NOCASE, `is_set` INTEGER NOT NULL, `arrival_time` INTEGER NOT NULL, `alert_buffer` INTEGER NOT NULL, `start_location_id` INTEGER NOT NULL, `end_location_id` INTEGER NOT NULL, FOREIGN KEY(`start_location_id`) REFERENCES `Location`(`location_id`) ON UPDATE NO ACTION ON DELETE SET NULL , FOREIGN KEY(`end_location_id`) REFERENCES `Location`(`location_id`) ON UPDATE NO ACTION ON DELETE SET NULL )",
         "fields": [
           {
             "fieldPath": "id",
@@ -18,7 +18,7 @@
             "fieldPath": "name",
             "columnName": "name",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "isSet",
@@ -102,7 +102,7 @@
       },
       {
         "tableName": "Location",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`location_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `address` TEXT COLLATE NOCASE, `name` TEXT COLLATE NOCASE)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`location_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `address` TEXT NOT NULL COLLATE NOCASE, `name` TEXT COLLATE NOCASE)",
         "fields": [
           {
             "fieldPath": "id",
@@ -126,7 +126,7 @@
             "fieldPath": "address",
             "columnName": "address",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "name",
@@ -158,7 +158,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fcb5a6a831c06ab10a4a68bc69bf82a8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0191c6ffe52b538fc7ad8bd6f9986557')"
     ]
   }
 }

@@ -6,10 +6,12 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 import edu.cnm.deepdive.truealarm.model.dao.AlarmDao;
 import edu.cnm.deepdive.truealarm.model.dao.LocationDao;
 import edu.cnm.deepdive.truealarm.model.entity.Alarm;
 import edu.cnm.deepdive.truealarm.model.entity.Location;
+import edu.cnm.deepdive.truealarm.service.AlarmDatabase.Converters;
 import java.util.Date;
 
 @Database(
@@ -17,7 +19,7 @@ import java.util.Date;
     version = 1,
     exportSchema = true
 )
-
+@TypeConverters({Converters.class})
 public abstract class AlarmDatabase extends RoomDatabase {
 
   private static final String DB_NAME = "alarm_db";

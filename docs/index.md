@@ -67,11 +67,17 @@ This application would not be able to function, however, without the AlarmManage
 * [Alarm Entity](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/model/entity/Alarm.java)
 * [Location Entity](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/model/entity/Location.java)
 
+## Repositories
+
+* [Alarm Repository](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/service/AlarmRepository.java)
+* [Location Repository](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/service/LocationRepository.java)
+
 ## Dao'n Town
 
 * [Alarm Dao](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/model/dao/AlarmDao.java)
 * [Location Dao](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/model/dao/LocationDao.java)
 
-## Data Definition Language
+## Database and DDL
 
+* [Room Database](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/service/AlarmDatabase.java)
 * [SQLite DDL](ddl.md)

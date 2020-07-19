@@ -29,6 +29,7 @@ public class Alarm {
   @ColumnInfo(name = "alarm_id")
   private long id;
 
+  @NonNull
   @ColumnInfo(collate = ColumnInfo.NOCASE)
   private String name = "";
 

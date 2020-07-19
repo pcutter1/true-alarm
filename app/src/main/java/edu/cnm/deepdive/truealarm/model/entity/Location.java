@@ -23,6 +23,7 @@ public class Location {
   @ColumnInfo(name = "longitude")
   private double longitude;
 
+  @NonNull
   @ColumnInfo(collate = ColumnInfo.NOCASE)
   private String address;
 
