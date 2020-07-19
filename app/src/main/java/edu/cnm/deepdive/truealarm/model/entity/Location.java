@@ -25,7 +25,7 @@ public class Location {
 
   @NonNull
   @ColumnInfo(collate = ColumnInfo.NOCASE)
-  private String address;
+  private String address = "";
 
   @ColumnInfo(collate = ColumnInfo.NOCASE)
   private String name;
