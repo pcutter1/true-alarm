@@ -7,19 +7,52 @@
   android:layout_height="match_parent"
   tools:context=".controller.ui.alarm.AlarmFragment">
 
-  <TextView
-    android:id="@+id/text_dashboard"
-    android:layout_width="match_parent"
+  <Spinner
+    android:id="@+id/alarm_detail_spinner"
+    android:layout_width="100dp"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="10dp"
+    />
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintVertical_bias=".6"
+    android:layout_marginStart="20dp"
+    android:textAlignment="center"
+    android:textSize="15sp"
+    android:text="@string/arrival_time_title"/>
+
+
+
+  <EditText
+    android:id="@+id/new_name"
+    android:layout_width="130dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/nav_view"
+    android:layout_marginStart="15dp"
+    android:layout_marginBottom="15dp"
     android:textAlignment="center"
     android:textSize="20sp"
-    app:layout_constraintBottom_toBottomOf="parent"
+    android:text="@string/new_name"/>
+
+  <Button
+    android:id="@+id/create_new"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"/>
+    app:layout_constraintBottom_toTopOf="@id/nav_view"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="15dp"
+    android:textAlignment="center"
+    android:textSize="20sp"
+    android:text="@string/create_alarm"/>
 
   <com.google.android.material.bottomnavigation.BottomNavigationView
     android:id="@+id/nav_view"
