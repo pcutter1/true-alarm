@@ -50,7 +50,7 @@
       android:layout_height="wrap_content"
       android:layout_gravity="top"
       android:layout_marginEnd="5dp"
-      android:text="@string/alarm_1_name"
+      android:text="@string/alarm1_name"
       android:textSize="18sp"/>
 
     <TextView
@@ -59,23 +59,16 @@
       android:layout_height="match_parent"
       android:gravity="start|center"
       android:layout_gravity="start"
-      android:textSize="40sp"
+      android:textSize="35sp"
+      android:layout_marginEnd="20dp"
       android:text="@string/alarm1_wake_time"/>
 
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:gravity="end|center|top"
-      android:layout_gravity="top"
-      android:text="@string/leave_by"/>
-
-    <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:gravity="end|center|bottom"
       android:layout_gravity="center"
-      android:textSize="15sp"
-      android:text="9:08 AM"/>
+      android:text="@string/alarm1_leave_by"/>
+
 
    <ToggleButton
      android:id="@+id/alarm1_set"
@@ -83,6 +76,92 @@
      android:layout_height="wrap_content"
      android:layout_gravity="end"
      android:layout_marginEnd="5dp"/>
+
+
+
+  </androidx.appcompat.widget.Toolbar>
+
+  <androidx.appcompat.widget.Toolbar
+    android:id="@+id/alarm2_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginHorizontal="5dp"
+    app:layout_constraintTop_toBottomOf="@id/alarm1_toolbar">
+
+    <TextView
+      android:id="@+id/alarm2_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="top"
+      android:layout_marginEnd="5dp"
+      android:text="@string/alarm2_name"
+      android:textSize="18sp"/>
+
+    <TextView
+      android:id="@+id/alarm2_wake_time"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:gravity="start|center"
+      android:layout_gravity="start"
+      android:textSize="35sp"
+      android:layout_marginEnd="20dp"
+      android:text="@string/alarm2_wake_time"/>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:text="@string/alarm2_leave_by"/>
+
+    <ToggleButton
+      android:id="@+id/alarm2_set"
+      android:layout_width="50dp"
+      android:layout_height="wrap_content"
+      android:layout_gravity="end"
+      android:layout_marginEnd="5dp"/>
+
+
+
+  </androidx.appcompat.widget.Toolbar>
+
+  <androidx.appcompat.widget.Toolbar
+    android:id="@+id/alarm3_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginHorizontal="5dp"
+    app:layout_constraintTop_toBottomOf="@id/alarm2_toolbar">
+
+    <TextView
+      android:id="@+id/alarm3_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="top"
+      android:layout_marginEnd="5dp"
+      android:text="@string/alarm3_name"
+      android:textSize="18sp"/>
+
+    <TextView
+      android:id="@+id/alarm3_wake_time"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:gravity="start|center"
+      android:layout_gravity="start"
+      android:textSize="35sp"
+      android:layout_marginEnd="20dp"
+      android:text="@string/alarm3_wake_time"/>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:text="@string/alarm3_leave_by"/>
+
+    <ToggleButton
+      android:id="@+id/alarm3_set"
+      android:layout_width="50dp"
+      android:layout_height="wrap_content"
+      android:layout_gravity="end"
+      android:layout_marginEnd="5dp"/>
 
 
 
