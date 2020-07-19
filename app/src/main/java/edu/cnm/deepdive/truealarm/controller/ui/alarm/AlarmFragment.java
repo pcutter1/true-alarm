@@ -21,7 +21,7 @@ public class AlarmFragment extends Fragment {
     alarmViewModel =
         ViewModelProviders.of(this).get(AlarmViewModel.class);
     View root = inflater.inflate(R.layout.fragment_alarm_detail, container, false);
-    final TextView textView = root.findViewById(R.id.text_dashboard);
+    final TextView textView = root.findViewById(R.id.arrival_time_title);
     alarmViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
       @Override
       public void onChanged(@Nullable String s) {

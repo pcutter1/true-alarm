@@ -40,8 +40,8 @@ public class SettingsFragment extends Fragment implements OnItemSelectedListener
     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
         SettingsFragment.this.getContext(), R.array.alarms_array, android.R.layout.simple_spinner_item
     );
-    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-       spinner.setAdapter(adapter);
+//    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//       spinner.setAdapter(adapter);
   }
 
   @Override
