@@ -68,9 +68,30 @@
     android:layout_height="wrap_content"
     app:layout_constraintStart_toEndOf="@id/arrive_title"
     app:layout_constraintTop_toBottomOf="@id/depart_address"
-
     android:hint="@string/depart_address_prompt"
     android:textSize="15sp"/>
+
+  <TextView
+    android:id="@+id/est_commute_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
+   app:layout_constraintBottom_toTopOf="@id/est_commute_time"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="5dp"
+    android:textSize="15sp"
+    android:text="@string/est_commute_title"/>
+
+  <EditText
+    android:id="@+id/est_commute_time"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/create_new"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:textSize="15sp"
+    android:text="@string/est_commute_time"/>
 
 
   <TextView
@@ -91,51 +112,53 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
     android:layout_marginTop="10dp"
-    android:text="@string/arrival_time_title"
     android:textAlignment="center"
     android:textSize="15sp"
-    app:layout_constraintTop_toBottomOf="@id/arrival_address"
+    app:layout_constraintBottom_toTopOf="@id/arrival_time_selected"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintVertical_bias=".65"/>
+    android:text="@string/arrival_time_title"/>
 
   <TimePicker
     android:id="@+id/arrival_time_selected"
-    android:layout_width="250dp"
-    android:layout_height="50dp"
+    android:layout_width="wrap_content"
+    android:layout_height="65dp"
     android:layout_marginStart="5dp"
-    android:textSize="25sp"
+    android:layout_marginBottom="5dp"
+    android:textSize="15sp"
     android:timePickerMode="spinner"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/arrival_time_title"/>
+   app:layout_constraintBottom_toTopOf="@id/buffer_time_title"/>
 
   <TextView
     android:id="@+id/buffer_time_title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="20dp"
+    android:layout_marginStart="100dp"
     android:layout_marginTop="10dp"
     android:text="@string/buffer_time_title"
     android:textAlignment="center"
     android:textSize="15sp"
-    app:layout_constraintTop_toBottomOf="@id/arrival_time_selected"
+    app:layout_constraintBottom_toTopOf="@id/buffer_minutes_selected"
     app:layout_constraintStart_toStartOf="parent"/>
 
-  <TimePicker
+  <EditText
     android:id="@+id/buffer_minutes_selected"
-    android:layout_width="250dp"
-    android:layout_height="50dp"
-    android:layout_marginStart="5dp"
-    android:textSize="25sp"
-    android:timePickerMode="spinner"
+    android:layout_width="wrap_content"
+    android:layout_height="65dp"
+    android:layout_marginStart="10dp"
+    android:textSize="15sp"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/buffer_time_title"/>
+    app:layout_constraintBottom_toTopOf="@id/edit_name"
+    android:hint="@string/buffer_hint"
+    android:inputType="number"
+    android:layout_marginBottom="8dp"/>
 
   <androidx.constraintlayout.widget.Guideline
     android:id="@+id/guideline"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    app:layout_constraintGuide_percent="0.3"/>
+    app:layout_constraintGuide_percent="0.25"/>
 
   <com.google.android.material.bottomnavigation.BottomNavigationView
     android:id="@+id/nav_view"
