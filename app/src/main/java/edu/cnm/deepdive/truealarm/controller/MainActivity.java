@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.truealarm.controller;
 
 import android.os.Bundle;
+import android.widget.TimePicker;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
     NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     NavigationUI.setupWithNavController(navView, navController);
+    //TODO Get Minute Picker working
+//    TimePicker minutePicker = (TimePicker) findViewById(R.id.buffer_minutes_selected);
+//    minutePicker.setIs24HourView(true);
   }
 
 }
