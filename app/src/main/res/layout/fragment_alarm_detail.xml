@@ -7,36 +7,20 @@
   android:layout_height="match_parent"
   tools:context=".controller.ui.alarm.AlarmFragment">
 
-  <Button
-    android:id="@+id/create_new"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="15dp"
-    android:layout_marginEnd="15dp"
-    android:text="@string/create_alarm"
-    android:textAlignment="center"
-    android:textSize="20sp"
-    app:layout_constraintBottom_toTopOf="@id/nav_view"
-    app:layout_constraintEnd_toEndOf="parent"/>
 
-
-  <EditText
-    android:id="@+id/edit_name"
-    android:layout_width="130dp"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="15dp"
-    android:layout_marginStart="15dp"
-    android:text="@string/new_name"
-    android:textAlignment="center"
-    android:textSize="20sp"
-    app:layout_constraintBottom_toTopOf="@id/nav_view"
-    app:layout_constraintStart_toStartOf="parent"/>
-
-  <Spinner
+  <TextView
     android:id="@+id/alarm_detail_spinner"
     android:layout_width="100dp"
     android:layout_height="wrap_content"
     app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    />
+
+  <Button
+    android:id="@+id/delete_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     />
 
@@ -76,7 +60,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:layout_constraintEnd_toEndOf="parent"
-   app:layout_constraintBottom_toTopOf="@id/est_commute_time"
+    app:layout_constraintBottom_toTopOf="@id/est_commute_time"
     android:layout_marginEnd="10dp"
     android:layout_marginTop="5dp"
     android:textSize="15sp"
@@ -127,31 +111,56 @@
     android:textSize="15sp"
     android:timePickerMode="spinner"
     app:layout_constraintStart_toStartOf="parent"
-   app:layout_constraintBottom_toTopOf="@id/buffer_time_title"/>
+    app:layout_constraintBottom_toTopOf="@id/buffer_time_title"/>
 
   <TextView
     android:id="@+id/buffer_time_title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="100dp"
+    android:layout_marginStart="10dp"
     android:layout_marginTop="10dp"
     android:text="@string/buffer_time_title"
     android:textAlignment="center"
-    android:textSize="15sp"
+    android:textSize="10sp"
     app:layout_constraintBottom_toTopOf="@id/buffer_minutes_selected"
     app:layout_constraintStart_toStartOf="parent"/>
+
 
   <EditText
     android:id="@+id/buffer_minutes_selected"
     android:layout_width="wrap_content"
     android:layout_height="65dp"
     android:layout_marginStart="10dp"
-    android:textSize="15sp"
+    android:textSize="10sp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintBottom_toTopOf="@id/edit_name"
     android:hint="@string/buffer_hint"
     android:inputType="number"
     android:layout_marginBottom="8dp"/>
+
+  <EditText
+    android:id="@+id/edit_name"
+    android:layout_width="130dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:layout_marginStart="15dp"
+    android:text="@string/new_name"
+    android:textAlignment="center"
+    android:textSize="20sp"
+    app:layout_constraintBottom_toTopOf="@id/nav_view"
+    app:layout_constraintStart_toStartOf="parent"/>
+
+  <Button
+    android:id="@+id/create_new"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:layout_marginEnd="15dp"
+    android:text="@string/create_alarm"
+    android:textAlignment="center"
+    android:textSize="20sp"
+    app:layout_constraintBottom_toTopOf="@id/nav_view"
+    app:layout_constraintEnd_toEndOf="parent"/>
 
   <androidx.constraintlayout.widget.Guideline
     android:id="@+id/guideline"
