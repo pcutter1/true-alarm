@@ -16,7 +16,7 @@
   <fragment
     android:id="@+id/navigation_alarm_detail"
     android:label="@string/title_alarm_details"
-    android:name="edu.cnm.deepdive.truealarm.controller.ui.alarm.AlarmFragment"
+    android:name="edu.cnm.deepdive.truealarm.controller.ui.alarm.AlarmDetailFragment"
     tools:layout="@layout/fragment_alarm_detail"/>
 
   <fragment

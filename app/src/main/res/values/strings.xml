@@ -38,7 +38,7 @@
   <string name="edit_alarms">EDIT</string>
   <string name="create_alarm">CREATE</string>
   <string name="new_name">NAME</string>
-  <string name="arrival_time_title">Arrival Time</string>
+  <string name="select_arrival_time">Set Arrival Time</string>
   <string name="buffer_time_title">Buffer Time</string>
   <string name="depart_title">Depart:</string>
   <string name="arrival_title">Arrive:</string>

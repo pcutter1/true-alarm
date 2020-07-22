@@ -5,7 +5,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".controller.ui.alarm.AlarmFragment">
+  tools:context=".controller.ui.alarm.AlarmDetailFragment">
 
 
   <TextView
@@ -90,8 +90,8 @@
     android:layout_marginTop="20dp"
     android:layout_marginStart="8dp"/>
 
-  <TextView
-    android:id="@+id/arrival_time_title"
+  <Button
+    android:id="@+id/select_arrival_time_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
@@ -100,16 +100,15 @@
     android:textSize="15sp"
     app:layout_constraintBottom_toTopOf="@id/arrival_time_selected"
     app:layout_constraintStart_toStartOf="parent"
-    android:text="@string/arrival_time_title"/>
+    android:text="@string/select_arrival_time"/>
 
-  <TimePicker
+  <EditText
     android:id="@+id/arrival_time_selected"
     android:layout_width="wrap_content"
-    android:layout_height="65dp"
+    android:layout_height="wrap_content"
     android:layout_marginStart="5dp"
     android:layout_marginBottom="5dp"
     android:textSize="15sp"
-    android:timePickerMode="spinner"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintBottom_toTopOf="@id/buffer_time_title"/>
 

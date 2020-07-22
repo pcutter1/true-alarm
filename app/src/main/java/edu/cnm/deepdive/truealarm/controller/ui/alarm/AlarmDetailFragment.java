@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import edu.cnm.deepdive.truealarm.R;
 
-public class AlarmFragment extends Fragment {
+public class AlarmDetailFragment extends Fragment {
 
   private AlarmViewModel alarmViewModel;
 
@@ -21,7 +21,7 @@ public class AlarmFragment extends Fragment {
     alarmViewModel =
         ViewModelProviders.of(this).get(AlarmViewModel.class);
     View root = inflater.inflate(R.layout.fragment_alarm_detail, container, false);
-    final TextView textView = root.findViewById(R.id.arrival_time_title);
+    final TextView textView = root.findViewById(R.id.select_arrival_time_button);
     alarmViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
       @Override
       public void onChanged(@Nullable String s) {
