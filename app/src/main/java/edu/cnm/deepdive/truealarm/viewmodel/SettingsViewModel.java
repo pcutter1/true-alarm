@@ -2,6 +2,7 @@ package edu.cnm.deepdive.truealarm.viewmodel;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,7 +11,7 @@ import edu.cnm.deepdive.truealarm.service.AlarmRepository;
 import edu.cnm.deepdive.truealarm.service.LocationRepository;
 import java.util.List;
 
-public class SettingsViewModel extends ViewModel {
+public class SettingsViewModel extends AndroidViewModel {
 
   private MutableLiveData<Alarm> alarm;
   private MutableLiveData<List<Alarm>> alarms;
@@ -20,7 +21,7 @@ public class SettingsViewModel extends ViewModel {
 
 
   public SettingsViewModel(@NonNull Application application) {
-    super();
+    super(application);
     alarmRepository = new AlarmRepository(application);
     locationRepository = new LocationRepository(application);
     alarms = new MutableLiveData<List<Alarm>>();

@@ -2,6 +2,7 @@ package edu.cnm.deepdive.truealarm.viewmodel;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.Lifecycle.Event;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LiveData;
@@ -13,7 +14,7 @@ import edu.cnm.deepdive.truealarm.service.AlarmRepository;
 import io.reactivex.disposables.CompositeDisposable;
 import java.util.List;
 
-public class HomeViewModel extends ViewModel implements LifecycleObserver {
+public class HomeViewModel extends AndroidViewModel implements LifecycleObserver {
 
   private MutableLiveData<Alarm> alarm_item;
   private MutableLiveData<List<Alarm>> alarms;
@@ -22,7 +23,7 @@ public class HomeViewModel extends ViewModel implements LifecycleObserver {
   private final CompositeDisposable pending;
 
   public HomeViewModel(@NonNull Application application) {
-   super();
+   super(application);
    alarm_item = new MutableLiveData<Alarm>();
    alarms = new MutableLiveData<List<Alarm>>();
    alarmRepository = new AlarmRepository(application);
