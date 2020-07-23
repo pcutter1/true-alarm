@@ -17,14 +17,12 @@ public class AlarmAdapter extends RecyclerView.Adapter<Holder> {
   private final String unnamedAlarm;
   private final Context context;
   private final List<Alarm> alarms;
-  private final OnClickListener clickListener;
 
   public AlarmAdapter(Context context,
-      List<Alarm> alarms, OnClickListener clickListener) {
+      List<Alarm> alarms) {
     this.context = context;
     this.alarms = alarms;
     unnamedAlarm = "Alarm";
-    this.clickListener = clickListener;
   }
 
   @NonNull
@@ -68,15 +66,8 @@ public class AlarmAdapter extends RecyclerView.Adapter<Holder> {
       //leaveBy.setText();   TODO put logic to change leaveby time based on traffic data and arrive by time
       // TODO add onclick listener for edit and delete buttons
 
-      alarmView.setOnClickListener((v) -> clickListener.onClick(v, getAdapterPosition(), alarm));
-
     }
   }
 
-  public interface OnClickListener {
-
-    void onClick(View v, int position, Alarm alarm);
-
-  }
 
 }

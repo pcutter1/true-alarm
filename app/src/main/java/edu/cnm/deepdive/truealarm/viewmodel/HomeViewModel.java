@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.truealarm.controller.ui.home;
+package edu.cnm.deepdive.truealarm.viewmodel;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -37,9 +37,8 @@ public class HomeViewModel extends ViewModel implements LifecycleObserver {
     pending.add(
         alarmRepository.save(alarm)
         .subscribe(
-            () -> {
-            },
-            (throwable) -> this.throwable.postValue(throwable)
+            () -> {},
+            this.throwable::postValue
         )
     );
   }
@@ -50,9 +49,8 @@ public class HomeViewModel extends ViewModel implements LifecycleObserver {
     pending.add(
         alarmRepository.delete(alarm)
             .subscribe(
-                () -> {
-                },
-                (throwable) -> this.throwable.postValue(throwable)
+                () -> {},
+                this.throwable::postValue
             )
     );
   }

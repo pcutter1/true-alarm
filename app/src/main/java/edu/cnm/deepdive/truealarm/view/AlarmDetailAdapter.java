@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.cnm.deepdive.truealarm.R;
 import edu.cnm.deepdive.truealarm.model.entity.Alarm;
-import edu.cnm.deepdive.truealarm.view.AlarmAdapter.OnClickListener;
 import java.util.List;
 
 public class AlarmDetailAdapter extends RecyclerView.Adapter<AlarmDetailAdapter.Holder> {
@@ -18,12 +17,12 @@ public class AlarmDetailAdapter extends RecyclerView.Adapter<AlarmDetailAdapter.
   private final String unnamedAlarm;
   private final Context context;
   private final List<Alarm> alarms;
-  private final OnClickListener clickListener;
+  private final OnCLickListener clickListener;
 
 
   public AlarmDetailAdapter(Context context,
       List<Alarm> alarms,
-      OnClickListener clickListener) {
+      OnCLickListener clickListener) {
     super();
     this.context = context;
     this.alarms = alarms;
@@ -75,7 +74,7 @@ public class AlarmDetailAdapter extends RecyclerView.Adapter<AlarmDetailAdapter.
       arrivalTime.setText(alarm.getArriveBy());
       //commuteTime.setText(); TODO implement with google routes
       bufferMinutes.setText(alarm.getBuffer());
-      alarmDetailView.setOnClickListener((v) -> clickListener.onClick(v, getAdapterPosition(), alarm));
+      alarmDetailView.setOnClickListener((v) -> clickListener.OnClick(v, getAdapterPosition(), alarm));
     }
 
 

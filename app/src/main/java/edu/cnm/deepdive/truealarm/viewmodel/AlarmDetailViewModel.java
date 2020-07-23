@@ -1,14 +1,14 @@
-package edu.cnm.deepdive.truealarm.controller.ui.alarm;
+package edu.cnm.deepdive.truealarm.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class AlarmViewModel extends ViewModel {
+public class AlarmDetailViewModel extends ViewModel {
 
   private MutableLiveData<String> mText;
 
-  public AlarmViewModel() {
+  public AlarmDetailViewModel() {
     mText = new MutableLiveData<>();
     mText.setValue("This is dashboard fragment");
   }

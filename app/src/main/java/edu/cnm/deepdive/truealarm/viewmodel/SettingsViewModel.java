@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.truealarm.controller.ui.settings;
+package edu.cnm.deepdive.truealarm.viewmodel;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
