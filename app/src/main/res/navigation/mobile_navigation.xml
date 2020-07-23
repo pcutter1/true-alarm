@@ -11,13 +11,33 @@
     android:name="edu.cnm.deepdive.truealarm.controller.ui.home.HomeFragment"
     tools:layout="@layout/fragment_home">
 
+    <action
+      android:id="@+id/edit_details"
+      app:destination="@id/navigation_alarm_detail">
+      <argument
+        android:name="alarmId"
+        app:argType="integer"
+        android:defaultValue="0"/>
+    </action>
+
   </fragment>
 
   <fragment
     android:id="@+id/navigation_alarm_detail"
     android:label="@string/title_alarm_details"
     android:name="edu.cnm.deepdive.truealarm.controller.ui.alarm.AlarmDetailFragment"
-    tools:layout="@layout/fragment_alarm_detail"/>
+    tools:layout="@layout/fragment_alarm_detail">
+
+    <argument
+      android:name="alarmId"
+      app:argType="integer"
+      android:defaultValue="0"/>
+
+    <action
+      android:id="@+id/return_home"
+      app:destination="@id/navigation_home"/>
+
+  </fragment>
 
   <fragment
     android:id="@+id/navigation_settings"

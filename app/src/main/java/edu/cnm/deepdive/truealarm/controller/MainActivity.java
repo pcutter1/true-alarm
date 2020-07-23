@@ -27,13 +27,8 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    //TODO Figure out ActivityMain layout issue
-//    arrivalTimePicker = findViewById(R.id.select_arrival_time_button);
-//    arrivalTime = findViewById(R.id.arrival_time_selected);
-//
-//    arrivalTimePicker.setOnClickListener(this);
+    //TODO setup observe throwable in viewmodel and display toast
 
-    BottomNavigationView navView = findViewById(R.id.nav_view);
     // Passing each menu ID as a set of Ids because each
     // menu should be considered as top level destinations.
     AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -41,26 +36,7 @@ public class MainActivity extends AppCompatActivity {
         .build();
     NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
     NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-    NavigationUI.setupWithNavController(navView, navController);
   }
-
-//    @Override
-//    public void onClick(View v) {
-//
-//      if (v == arrivalTimePicker) {
-//
-//        final Calendar c = Calendar.getInstance();
-//        mHour = c.get(Calendar.HOUR_OF_DAY);
-//        mMinute = c.get(Calendar.MINUTE);
-//
-//        // Launch Time Picker Dialog
-//        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-//            (view, hourOfDay, minute) ->
-//                arrivalTime.setText(hourOfDay + ":" + minute), mHour, mMinute, false);
-//        timePickerDialog.show();
-//      }
-//    }
-
 
 
   }

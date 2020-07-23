@@ -9,8 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.cnm.deepdive.truealarm.R;
+import edu.cnm.deepdive.truealarm.controller.ui.home.HomeFragmentDirections.EditDetails;
 import edu.cnm.deepdive.truealarm.view.AlarmAdapter;
 import edu.cnm.deepdive.truealarm.viewmodel.HomeViewModel;
 
@@ -23,6 +25,11 @@ public class HomeFragment extends Fragment {
       ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_home, container, false);
     alarmList = view.findViewById(R.id.alarm_recycler_view);
+    view.findViewById(R.id.add_alarm).setOnClickListener((v) -> {
+      EditDetails action = HomeFragmentDirections.editDetails();
+      action.setAlarmId(0);
+      Navigation.findNavController(view).navigate(action);
+    });
     return view;
   }
 
