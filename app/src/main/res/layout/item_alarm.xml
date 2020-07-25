@@ -14,7 +14,7 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     android:layout_marginEnd="5dp"
-    android:text="@string/alarm_name"
+    android:text="Alarm Name"
     android:textSize="@dimen/name_size"/>
 
   <TextView

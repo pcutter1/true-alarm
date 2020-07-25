@@ -21,6 +21,7 @@ public class HomeViewModel extends AndroidViewModel implements LifecycleObserver
   private final AlarmRepository alarmRepository;
   private final MutableLiveData<Throwable> throwable;
   private final CompositeDisposable pending;
+  private final MutableLiveData<Boolean> permissionsChecked;
 
   public HomeViewModel(@NonNull Application application) {
    super(application);
@@ -29,7 +30,15 @@ public class HomeViewModel extends AndroidViewModel implements LifecycleObserver
    alarmRepository = new AlarmRepository(application);
    throwable = new MutableLiveData<>();
    pending = new CompositeDisposable();
+   permissionsChecked = new MutableLiveData<>(false);
   }
+
+  public LiveData<Boolean> getPermissionsChecked() {
+    return permissionsChecked;
+  }
+
+  public void setPermissionsChecked(boolean checked) {
+    permissionsChecked.setValue(checked);}
 
   public LiveData<List<Alarm>> getAlarms() {return alarmRepository.getAll();}
 
