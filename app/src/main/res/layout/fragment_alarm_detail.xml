@@ -24,6 +24,18 @@
     app:layout_constraintTop_toTopOf="parent"
     />
 
+<RelativeLayout
+  android:id="@+id/map_container"
+  android:layout_width="match_parent"
+  android:layout_height="185dp">
+
+  <com.google.android.gms.maps.MapView
+    android:id="@+id/route_map"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+
+</RelativeLayout>
+
   <TextView
     android:id="@+id/depart_title"
     android:layout_width="wrap_content"
