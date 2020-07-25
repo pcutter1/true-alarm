@@ -28,7 +28,25 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+  }
 
+  public View onCreateView(@NonNull LayoutInflater inflater,
+      ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_alarm_detail, container, false);
+    mMapView = view.findViewById(R.id.route_map);
+    //final TextView textView = view.findViewById(R.id.select_arrival_time_button);
+//    alarmDetailViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//      @Override
+//      public void onChanged(@Nullable String s) {
+//        textView.setText(s);
+//      }
+//    });
+
+    initGoogleMap(savedInstanceState);
+    return view;
+  }
+
+  private void initGoogleMap(Bundle savedInstanceState) {
     // *** IMPORTANT ***
     // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
     // objects or sub-Bundles.
@@ -40,21 +58,6 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback 
 
     mMapView.getMapAsync(this);
   }
-
-  public View onCreateView(@NonNull LayoutInflater inflater,
-      ViewGroup container, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_alarm_detail, container, false);
-    mMapView = view.findViewById(R.id.route_map);
-    final TextView textView = view.findViewById(R.id.select_arrival_time_button);
-//    alarmDetailViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//      @Override
-//      public void onChanged(@Nullable String s) {
-//        textView.setText(s);
-//      }
-//    });
-    return view;
-  }
-
 
   @Override
   public void onSaveInstanceState(Bundle outState) {

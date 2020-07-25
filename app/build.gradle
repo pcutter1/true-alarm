@@ -21,8 +21,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
 
-        buildConfigField "String", "MAPS_API_KEY",
-                getProperty("$projectDir/../../../services/maps.properties", "maps_api_key")
+        resValue "string", "maps_api_key",
+                getProperty("$projectDir/../../../services/maps.properties", "API_KEY")
 
         javaCompileOptions {
             annotationProcessorOptions {

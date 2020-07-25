@@ -24,17 +24,21 @@
     app:layout_constraintTop_toTopOf="parent"
     />
 
-<RelativeLayout
+<FrameLayout
   android:id="@+id/map_container"
   android:layout_width="match_parent"
-  android:layout_height="185dp">
+  android:layout_height="0dp"
+  app:layout_constraintStart_toStartOf="parent"
+  app:layout_constraintEnd_toEndOf="parent"
+  app:layout_constraintTop_toTopOf="parent"
+  app:layout_constraintBottom_toTopOf="@id/guideline">
 
   <com.google.android.gms.maps.MapView
     android:id="@+id/route_map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
 
-</RelativeLayout>
+</FrameLayout>
 
   <TextView
     android:id="@+id/depart_title"
