@@ -2,38 +2,43 @@ package edu.cnm.deepdive.truealarm.controller.ui.alarm;
 
 import static edu.cnm.deepdive.truealarm.util.Constants.MAPVIEW_BUNDLE_KEY;
 
+import android.app.Activity;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.fragment.app.FragmentActivity;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import edu.cnm.deepdive.truealarm.R;
 import edu.cnm.deepdive.truealarm.viewmodel.AlarmDetailViewModel;
 
-public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback {
+public class AlarmDetailFragment extends Activity implements OnMapReadyCallback {
 
   private AlarmDetailViewModel alarmDetailViewModel;
-  private MapView mMapView;
+  private MapView mapView;
+  private FusedLocationProviderClient fusedLocationProviderClient;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    //fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
   }
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_alarm_detail, container, false);
-    mMapView = view.findViewById(R.id.route_map);
+    mapView = view.findViewById(R.id.route_map);
     //final TextView textView = view.findViewById(R.id.select_arrival_time_button);
 //    alarmDetailViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //      @Override
@@ -46,6 +51,17 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback 
     return view;
   }
 
+//  private void getLastKnownLocation() {
+//    fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this,
+//        new OnSuccessListener<Location>() {
+//          @Override
+//          public void onSuccess(Location location) {
+//            LatLng lastLocale = new LatLng(location.getLatitude(), location.getLongitude());
+//          }
+//        });
+//  }
+
+
   private void initGoogleMap(Bundle savedInstanceState) {
     // *** IMPORTANT ***
     // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
@@ -54,9 +70,9 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback 
     if (savedInstanceState != null) {
       mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
     }
-    mMapView.onCreate(mapViewBundle);
+    mapView.onCreate(mapViewBundle);
 
-    mMapView.getMapAsync(this);
+    mapView.getMapAsync(this);
   }
 
   @Override
@@ -69,25 +85,25 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback 
       outState.putBundle(MAPVIEW_BUNDLE_KEY, mapViewBundle);
     }
 
-    mMapView.onSaveInstanceState(mapViewBundle);
+    mapView.onSaveInstanceState(mapViewBundle);
   }
 
   @Override
   public void onResume() {
     super.onResume();
-    mMapView.onResume();
+    mapView.onResume();
   }
 
   @Override
   public void onStart() {
     super.onStart();
-    mMapView.onStart();
+    mapView.onStart();
   }
 
   @Override
   public void onStop() {
     super.onStop();
-    mMapView.onStop();
+    mapView.onStop();
   }
 
   @Override
@@ -97,20 +113,20 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback 
 
   @Override
   public void onPause() {
-    mMapView.onPause();
+    mapView.onPause();
     super.onPause();
   }
 
   @Override
   public void onDestroy() {
-    mMapView.onDestroy();
+    mapView.onDestroy();
     super.onDestroy();
   }
 
   @Override
   public void onLowMemory() {
     super.onLowMemory();
-    mMapView.onLowMemory();
+    mapView.onLowMemory();
   }
 
 }
