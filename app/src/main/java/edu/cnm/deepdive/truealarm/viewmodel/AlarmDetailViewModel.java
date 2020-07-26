@@ -8,18 +8,21 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import edu.cnm.deepdive.truealarm.model.entity.Alarm;
 import edu.cnm.deepdive.truealarm.service.AlarmRepository;
+import io.reactivex.disposables.CompositeDisposable;
 
 public class AlarmDetailViewModel extends AndroidViewModel {
 
   private final AlarmRepository alarmRepository;
   private final MutableLiveData<Alarm> alarm;
   private final MutableLiveData<Throwable> throwable;
+  private final CompositeDisposable pending;
 
   public AlarmDetailViewModel(@NonNull Application application) {
     super(application);
     alarmRepository = new AlarmRepository(application);
     alarm = new MutableLiveData<>();
     throwable = new MutableLiveData<>();
+    pending = new CompositeDisposable();
   }
 
   public LiveData<Alarm> getAlarm() {
@@ -28,6 +31,17 @@ public class AlarmDetailViewModel extends AndroidViewModel {
 
   public LiveData<Throwable> getThrowable() {
     return throwable;
+  }
+
+  public void saveAlarm(Alarm alarm) {
+    throwable.setValue(null);
+    pending.add(
+        alarmRepository.save(alarm)
+            .subscribe(
+                () -> {},
+                this.throwable::postValue
+            )
+    );
   }
 
   public void fetch(long alarmId) {

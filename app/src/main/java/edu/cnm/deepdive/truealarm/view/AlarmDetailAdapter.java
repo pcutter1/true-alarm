@@ -67,7 +67,7 @@ public class AlarmDetailAdapter extends RecyclerView.Adapter<AlarmDetailAdapter.
     }
 
     private void bind(int position) {
-      Alarm alarm = alarms.get(position);
+      Alarm alarm = AlarmDetailAdapter.this.alarms.get(position);
       String name =
           (alarm.getName() != null) ? alarm.getName() : unnamedAlarm;
       alarmName.setText(alarm.getName());

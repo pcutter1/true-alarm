@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.cnm.deepdive.truealarm.R;
@@ -25,12 +24,14 @@ public class HomeFragment extends Fragment {
       ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_home, container, false);
     alarmList = view.findViewById(R.id.alarm_recycler_view);
-    view.findViewById(R.id.add_alarm).setOnClickListener((v) -> {
-      EditDetails action = HomeFragmentDirections.editDetails();
-      action.setAlarmId(0);
-      Navigation.findNavController(view).navigate(action);
-    });
+    view.findViewById(R.id.add_alarm).setOnClickListener((v) -> editAlarm(0));
     return view;
+  }
+
+  private void editAlarm(long id) {
+    EditDetails action = HomeFragmentDirections.editDetails();
+    action.setAlarmId(id);
+    Navigation.findNavController(getView()).navigate(action);
   }
 
   @Override
@@ -40,7 +41,8 @@ public class HomeFragment extends Fragment {
         .get(HomeViewModel.class);
     homeViewModel.getAlarms().observe(getViewLifecycleOwner(), (alarms) -> {
       if (alarms != null) {
-        alarmList.setAdapter(new AlarmAdapter(getContext(), alarms));
+        alarmList.setAdapter(new AlarmAdapter(getContext(), alarms, (alarm) -> editAlarm(alarm.getId()),
+            (alarm) -> homeViewModel.deleteAlarm(alarm)));
       }
     });
   }

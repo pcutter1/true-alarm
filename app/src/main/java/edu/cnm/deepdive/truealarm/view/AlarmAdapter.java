@@ -17,11 +17,17 @@ public class AlarmAdapter extends RecyclerView.Adapter<Holder> {
   private final String unnamedAlarm;
   private final Context context;
   private final List<Alarm> alarms;
+  private final OnEditListener onEditListener;
+  private final OnDeleteListener onDeleteListener;
 
   public AlarmAdapter(Context context,
-      List<Alarm> alarms) {
+      List<Alarm> alarms,
+      OnEditListener onEditListener,
+      OnDeleteListener onDeleteListener) {
     this.context = context;
     this.alarms = alarms;
+    this.onEditListener = onEditListener;
+    this.onDeleteListener = onDeleteListener;
     unnamedAlarm = "Alarm";
   }
 
@@ -48,13 +54,17 @@ public class AlarmAdapter extends RecyclerView.Adapter<Holder> {
     private final TextView alarmName;
     private final TextView wakeTime;
     private final TextView leaveBy;
+    private final View edit;
+    private final View delete;
 
-    public Holder (@NonNull View alarmView) {
+    public Holder(@NonNull View alarmView) {
       super(alarmView);
       this.alarmView = alarmView;
       alarmName = alarmView.findViewById(R.id.alarm_name);
       wakeTime = alarmView.findViewById(R.id.alarm_wake_time);
       leaveBy = alarmView.findViewById(R.id.alarm_leave_by);
+      edit = alarmView.findViewById(R.id.edit);
+      delete = alarmView.findViewById(R.id.delete);
     }
 
     private void bind(int position) {
@@ -64,10 +74,19 @@ public class AlarmAdapter extends RecyclerView.Adapter<Holder> {
       alarmName.setText(alarm.getName());
       //wakeTime.setText();  TODO put logic to change wake time based on traffic data and arrive by time
       //leaveBy.setText();   TODO put logic to change leaveby time based on traffic data and arrive by time
-      // TODO add onclick listener for edit and delete buttons
+      edit.setOnClickListener((v) -> onEditListener.onEdit(alarm));
+      delete.setOnClickListener((v) -> onDeleteListener.onDelete(alarm));
 
     }
   }
 
+  public interface OnEditListener {
 
+    void onEdit(Alarm alarm);
+  }
+
+  public interface OnDeleteListener {
+
+    void onDelete(Alarm alarm);
+  }
 }

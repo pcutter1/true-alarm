@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+  <TextView
+    android:id="@+id/current_time"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintVertical_bias=".2"
+    android:text="8:00AM"
+    android:textSize="40sp"/>
+
+  <TextView
+    android:id="@+id/commute_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/est_commute_time"
+    android:text="@string/your_estimate_commute_time_is"
+    android:textSize="15sp"/>
+
+  <Button
+    android:id="@+id/stop_alarm"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="@id/current_time"
+    app:layout_constraintBottom_toTopOf="@id/commute_title"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintVertical_bias=".6"
+    android:text="STOP"
+    android:textSize="30sp"/>
+
+  <TextView
+    android:id="@+id/est_commute_time"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/current_time"
+    app:layout_constraintVertical_bias=".7"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:textSize="20sp"
+    android:text="@string/est_commute_time"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

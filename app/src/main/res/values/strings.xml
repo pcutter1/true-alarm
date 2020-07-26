@@ -21,13 +21,8 @@
   <string name="access_fine_location_explanation">This app uses your location info to &#x2026;</string>
 
 
-  <string-array name="alarms_array">
-    <item>Alarm 1</item>
-    <item>Alarm 2</item>
-    <item>Alarm 3</item>
-  </string-array>
-
   <string name="home_second">Home Second</string>
+
   <string name="settings_title">Settings</string>
   <string name="snooze_title">Snooze</string>
   <string name="alarm_tone_title">Alarm Tone</string>
@@ -48,7 +43,7 @@
   <string name="alarm3_wake_time">10:12 AM</string>
   <string name="alarm3_leave_by">Leave By \n\n11:22 AM</string>
   <string name="edit_alarms">EDIT</string>
-  <string name="create_alarm">CREATE</string>
+  <string name="create_alarm">SAVE</string>
   <string name="new_name">NAME</string>
   <string name="select_arrival_time">Set Arrival Time</string>
   <string name="buffer_time_title">Buffer Time</string>
@@ -58,6 +53,16 @@
   <string name="est_commute_title">Est. Drive\n Time:</string>
   <string name="est_commute_time">43 Minutes</string>
   <string name="buffer_hint">ENTER MIN</string>
+  <string name="your_estimate_commute_time_is">Your Estimate Commute Time Is:</string>
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="arrival_time">Arrival Time</string>
+
+  <!-- TODO: Remove or change this placeholder text -->
+  <string-array name="alarms_array">
+    <item>Alarm 1</item>
+    <item>Alarm 2</item>
+    <item>Alarm 3</item>
+  </string-array>
 
 
 </resources>

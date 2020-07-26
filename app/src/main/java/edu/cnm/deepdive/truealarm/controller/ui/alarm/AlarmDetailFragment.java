@@ -2,64 +2,99 @@ package edu.cnm.deepdive.truealarm.controller.ui.alarm;
 
 import static edu.cnm.deepdive.truealarm.util.Constants.MAPVIEW_BUNDLE_KEY;
 
-import android.app.Activity;
-import android.location.Location;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import edu.cnm.deepdive.truealarm.R;
+import edu.cnm.deepdive.truealarm.controller.DateTimePickerFragment;
+import edu.cnm.deepdive.truealarm.controller.DateTimePickerFragment.Mode;
+import edu.cnm.deepdive.truealarm.model.entity.Alarm;
+import edu.cnm.deepdive.truealarm.model.entity.Location;
+import edu.cnm.deepdive.truealarm.view.AlarmAdapter.OnEditListener;
+import edu.cnm.deepdive.truealarm.view.AlarmDetailAdapter;
+import edu.cnm.deepdive.truealarm.view.AlarmDetailAdapter.OnCLickListener;
 import edu.cnm.deepdive.truealarm.viewmodel.AlarmDetailViewModel;
+import java.util.Calendar;
 
-public class AlarmDetailFragment extends Activity implements OnMapReadyCallback {
+public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback, DateTimePickerFragment.OnChangeListener,
+    OnEditListener {
 
-  private AlarmDetailViewModel alarmDetailViewModel;
+  private static final String ID_KEY = "alarm_id";
+
+  private AlarmDetailViewModel alarmDetailViewModel; //TODO Attach an OnViewCreated
+  private Location location;
+  private long alarmId;
+  private Alarm alarm;
   private MapView mapView;
-  private FusedLocationProviderClient fusedLocationProviderClient;
+  private EditText arrivalTimeSelected;
+  private EditText departAddress;
+  private EditText arriveAddress;
+  private EditText alarmName;
+  private EditText bufferTime;
+  private TextView commuteTime;
+  private AlertDialog dialog;
+
+
+  public static AlarmDetailFragment newInstance(long alarmId) {
+    AlarmDetailFragment fragment = new AlarmDetailFragment();
+    Bundle args = new Bundle();
+    args.putLong(ID_KEY, alarmId);
+    fragment.setArguments(args);
+    return fragment;
+  }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    //fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
   }
 
+  @Override
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_alarm_detail, container, false);
     mapView = view.findViewById(R.id.route_map);
-    //final TextView textView = view.findViewById(R.id.select_arrival_time_button);
-//    alarmDetailViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//      @Override
-//      public void onChanged(@Nullable String s) {
-//        textView.setText(s);
-//      }
-//    });
+    arrivalTimeSelected = view.findViewById(R.id.arrival_time_selected);
+    arrivalTimeSelected.setOnClickListener((v) -> {
+      Calendar calendar = Calendar.getInstance(); //TODO Needs to come from what we're editing
+      DateTimePickerFragment fragment = DateTimePickerFragment.createInstance(Mode.TIME, calendar);
+      fragment.show(getChildFragmentManager(), fragment.getClass().getName());
+    });
+
+    alarmName = view.findViewById(R.id.edit_name);
+
+    bufferTime = view.findViewById(R.id.buffer_minutes_selected);
+
+    departAddress = view.findViewById(R.id.depart_address);
+
+    arriveAddress = view.findViewById(R.id.arrival_address);
+
+   // commuteTime = //TODO Add commutetime logic
+
+    view.findViewById(R.id.save).setOnClickListener((v) -> {
+      //TODO Set any properties in this alarm object from the fields
+      alarmDetailViewModel.saveAlarm(alarm);
+      //TODO after save, navigate back to list of alarms
+    });
 
     initGoogleMap(savedInstanceState);
     return view;
   }
 
-//  private void getLastKnownLocation() {
-//    fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this,
-//        new OnSuccessListener<Location>() {
-//          @Override
-//          public void onSuccess(Location location) {
-//            LatLng lastLocale = new LatLng(location.getLatitude(), location.getLongitude());
-//          }
-//        });
-//  }
 
 
   private void initGoogleMap(Bundle savedInstanceState) {
@@ -129,4 +164,30 @@ public class AlarmDetailFragment extends Activity implements OnMapReadyCallback 
     mapView.onLowMemory();
   }
 
+  @Override
+  public void onChange(Calendar calendar) {
+    //TODO update time in current alarm
+  }
+
+
+  @Override
+  public void onViewCreated(@NonNull View view, Bundle saveInstanceState) {
+    super.onViewCreated(view, saveInstanceState);
+    alarmDetailViewModel = new ViewModelProvider(getActivity()).get(AlarmDetailViewModel.class);
+    alarmDetailViewModel.getAlarm().observe(getViewLifecycleOwner(), (alarm) -> {
+      this.alarm = alarm;
+      if (alarmId != 0) {
+        alarmName.setText(alarm.getName());
+        arrivalTimeSelected.setText(alarm.getArriveBy());
+        bufferTime.setText(alarm.getBuffer());
+        //TODO Figure out alarm location id vs string addresses
+      }
+    });
+
+  }
+
+  @Override
+  public void onEdit(Alarm alarm) {
+
+  }
 }
