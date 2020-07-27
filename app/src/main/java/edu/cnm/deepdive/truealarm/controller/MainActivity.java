@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.truealarm.controller;
 
+import android.app.AlarmManager;
 import android.app.TimePickerDialog;
 import android.location.Location;
 import android.nfc.Tag;
@@ -33,14 +34,10 @@ import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
 
-  Button arrivalTimePicker;
-  EditText arrivalTime;
-  private int mHour;
-  private int mMinute;
 
   private static final int PERMISSIONS_REQUEST_CODE = 999;
   private final PermissionsService permissionsService = PermissionsService.getInstance();
-
+  AlarmManager alarmManager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         .build();
     NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
     NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+    alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
   }
 
 

@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.truealarm.controller.ui.alarm;
+package edu.cnm.deepdive.truealarm.controller.ui.alarmdetail;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,7 +20,6 @@ import edu.cnm.deepdive.truealarm.controller.DateTimePickerFragment;
 import edu.cnm.deepdive.truealarm.controller.DateTimePickerFragment.Mode;
 import edu.cnm.deepdive.truealarm.model.entity.Alarm;
 import edu.cnm.deepdive.truealarm.model.entity.Location;
-import edu.cnm.deepdive.truealarm.view.AlarmAdapter.OnEditListener;
 import edu.cnm.deepdive.truealarm.viewmodel.AlarmDetailViewModel;
 import java.util.Calendar;
 

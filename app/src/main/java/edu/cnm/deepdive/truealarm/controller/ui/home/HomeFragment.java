@@ -1,5 +1,7 @@
 package edu.cnm.deepdive.truealarm.controller.ui.home;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +19,10 @@ import edu.cnm.deepdive.truealarm.viewmodel.HomeViewModel;
 
 public class HomeFragment extends Fragment {
 
+  AlarmManager alarmManager;
   private RecyclerView alarmList;
   private HomeViewModel homeViewModel;
+  private PendingIntent pendingIntent;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
@@ -50,4 +54,5 @@ public class HomeFragment extends Fragment {
       }
     });
   }
+
 }
