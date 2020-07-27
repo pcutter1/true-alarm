@@ -42,17 +42,6 @@ public class HomeViewModel extends AndroidViewModel implements LifecycleObserver
 
   public LiveData<List<Alarm>> getAlarms() {return alarmRepository.getAll();}
 
-  public void saveAlarm(Alarm alarm) {
-    throwable.setValue(null);
-    pending.add(
-        alarmRepository.save(alarm)
-        .subscribe(
-            () -> {},
-            this.throwable::postValue
-        )
-    );
-  }
-
 
   public void deleteAlarm(Alarm alarm) {
     throwable.setValue(null);

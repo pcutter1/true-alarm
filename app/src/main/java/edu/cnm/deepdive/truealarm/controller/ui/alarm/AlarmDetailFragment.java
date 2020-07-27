@@ -1,14 +1,9 @@
 package edu.cnm.deepdive.truealarm.controller.ui.alarm;
 
-import static edu.cnm.deepdive.truealarm.util.Constants.MAPVIEW_BUNDLE_KEY;
-
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -26,24 +21,25 @@ import edu.cnm.deepdive.truealarm.controller.DateTimePickerFragment.Mode;
 import edu.cnm.deepdive.truealarm.model.entity.Alarm;
 import edu.cnm.deepdive.truealarm.model.entity.Location;
 import edu.cnm.deepdive.truealarm.view.AlarmAdapter.OnEditListener;
-import edu.cnm.deepdive.truealarm.view.AlarmDetailAdapter;
-import edu.cnm.deepdive.truealarm.view.AlarmDetailAdapter.OnCLickListener;
 import edu.cnm.deepdive.truealarm.viewmodel.AlarmDetailViewModel;
 import java.util.Calendar;
 
-public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback, DateTimePickerFragment.OnChangeListener,
-    OnEditListener {
+public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
+    DateTimePickerFragment.OnChangeListener {
 
+  public static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
   private static final String ID_KEY = "alarm_id";
 
-  private AlarmDetailViewModel alarmDetailViewModel; //TODO Attach an OnViewCreated
+  private long alarmId;
+  private AlarmDetailViewModel alarmDetailViewModel;
   private Location location;
   private Alarm alarm;
   private MapView mapView;
   private EditText arrivalTimeSelected;
   private EditText departAddress;
   private EditText arriveAddress;
-  private EditText alarmName;
+  private EditText editName;
+  private TextView alarmName;
   private EditText bufferTime;
   private TextView commuteTime;
   private AlertDialog dialog;
@@ -60,6 +56,9 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    if (getArguments() != null) {
+      alarmId = getArguments().getLong(ID_KEY, 0);
+    }
   }
 
   @Override
@@ -74,18 +73,20 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
       fragment.show(getChildFragmentManager(), fragment.getClass().getName());
     });
 
-    alarmName = view.findViewById(R.id.edit_name);
-
+    editName = view.findViewById(R.id.edit_name);
     bufferTime = view.findViewById(R.id.buffer_minutes_selected);
-
     departAddress = view.findViewById(R.id.depart_address);
-
     arriveAddress = view.findViewById(R.id.arrival_address);
 
-   // commuteTime = //TODO Add commutetime logic
+    // commuteTime = //TODO Add commutetime logic
 
     view.findViewById(R.id.save).setOnClickListener((v) -> {
-      //TODO Set any properties in this alarm object from the fields
+      Alarm alarm = new Alarm();
+      alarm.setName(editName.getText().toString().trim());
+      alarm.setBuffer(Integer.parseInt(bufferTime.getText().toString().trim()));
+      alarm.setArriveBy(Integer.parseInt(arrivalTimeSelected.getText().toString().trim()));
+//      alarm.setStartLocationId();
+//      alarm.setEndLocationId();
       alarmDetailViewModel.saveAlarm(alarm);
       //TODO after save, navigate back to list of alarms
     });
@@ -93,7 +94,6 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
     initGoogleMap(savedInstanceState);
     return view;
   }
-
 
 
   private void initGoogleMap(Bundle savedInstanceState) {
@@ -120,6 +120,30 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
     }
 
     mapView.onSaveInstanceState(mapViewBundle);
+  }
+
+  @Override
+  public void onChange(Calendar calendar) {
+    //TODO update time in current alarm
+  }
+
+
+  @Override
+  public void onViewCreated(@NonNull View view, Bundle saveInstanceState) {
+    super.onViewCreated(view, saveInstanceState);
+    alarmDetailViewModel = new ViewModelProvider(getActivity()).get(AlarmDetailViewModel.class);
+    if (alarmId != 0) {
+      alarmDetailViewModel.getAlarm().observe(getViewLifecycleOwner(), (alarm) -> {
+        this.alarm = alarm;
+        editName.setText(alarm.getName());
+        arrivalTimeSelected.setText(alarm.getArriveBy());
+        bufferTime.setText(alarm.getBuffer());
+        //TODO Figure out alarm location id vs string addresses
+      });
+      alarmDetailViewModel.setAlarmId(alarmId);
+    } else {
+      alarm = new Alarm();
+    }
   }
 
   @Override
@@ -163,39 +187,5 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
     mapView.onLowMemory();
   }
 
-  @Override
-  public void onChange(Calendar calendar) {
-    //TODO update time in current alarm
-  }
 
-  private void save() {
-    alarm.setArriveBy(Integer.parseInt(arrivalTimeSelected.getText().toString().trim()));
-    alarm.setBuffer(Integer.parseInt(bufferTime.getText().toString().trim()));
-    alarm.setName(alarmName.getText().toString().trim());
-  }
-
-  @Override
-  public void onViewCreated(@NonNull View view, Bundle saveInstanceState) {
-    super.onViewCreated(view, saveInstanceState);
-    alarmDetailViewModel = new ViewModelProvider(getActivity()).get(AlarmDetailViewModel.class);
-//    alarmDetailViewModel.getAlarm().observe(getViewLifecycleOwner(), (alarm) -> {
-//      this.alarm = alarm;
-//    });
-    if (alarm.getId() != 0L) {
-      alarmDetailViewModel.getAlarm().observe(getViewLifecycleOwner(), (alarm) -> {
-        this.alarm = alarm;
-        alarmName.setText(alarm.getName());
-        arrivalTimeSelected.setText(alarm.getArriveBy());
-        bufferTime.setText(alarm.getBuffer());
-        //TODO Figure out alarm location id vs string addresses
-      });
-    } else {
-      alarm = new Alarm();
-    }
-  }
-
-  @Override
-  public void onEdit(Alarm alarm) {
-
-  }
 }

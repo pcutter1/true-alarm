@@ -25,6 +25,7 @@ public class HomeFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_home, container, false);
     alarmList = view.findViewById(R.id.alarm_recycler_view);
     view.findViewById(R.id.add_alarm).setOnClickListener((v) -> editAlarm(0));
+    //   view.findViewById(R.id.delete).setOnClickListener((v) -> deleteAlarm);
     return view;
   }
 
@@ -33,6 +34,9 @@ public class HomeFragment extends Fragment {
     action.setAlarmId(id);
     Navigation.findNavController(getView()).navigate(action);
   }
+
+//  private void deleteAlarm(long id) {
+//  }
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

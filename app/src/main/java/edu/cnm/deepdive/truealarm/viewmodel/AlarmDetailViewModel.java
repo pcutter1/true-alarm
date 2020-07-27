@@ -45,11 +45,26 @@ public class AlarmDetailViewModel extends AndroidViewModel {
         );
   }
 
+  public void setAlarmId(long id) {
+    throwable.setValue(null);
+    pending.add(
+        alarmRepository.get(id)
+            .subscribe(
+                (alarm) -> this.alarm.postValue(alarm),
+                (throwable) -> this.throwable.postValue(throwable)
+            )
+    );
+  }
+
   public void saveAlarm(Alarm alarm) {
     throwable.setValue(null);
     pending.add(
         alarmRepository.save(alarm)
-            .subscribe());
+            .subscribe(
+                () -> {
+                },
+                (throwable) -> this.throwable.postValue(throwable.getCause())
+            ));
   }
 
 
