@@ -38,7 +38,6 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
 
   private AlarmDetailViewModel alarmDetailViewModel; //TODO Attach an OnViewCreated
   private Location location;
-  private long alarmId;
   private Alarm alarm;
   private MapView mapView;
   private EditText arrivalTimeSelected;
@@ -169,21 +168,30 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
     //TODO update time in current alarm
   }
 
+  private void save() {
+    alarm.setArriveBy(Integer.parseInt(arrivalTimeSelected.getText().toString().trim()));
+    alarm.setBuffer(Integer.parseInt(bufferTime.getText().toString().trim()));
+    alarm.setName(alarmName.getText().toString().trim());
+  }
 
   @Override
   public void onViewCreated(@NonNull View view, Bundle saveInstanceState) {
     super.onViewCreated(view, saveInstanceState);
     alarmDetailViewModel = new ViewModelProvider(getActivity()).get(AlarmDetailViewModel.class);
-    alarmDetailViewModel.getAlarm().observe(getViewLifecycleOwner(), (alarm) -> {
-      this.alarm = alarm;
-      if (alarmId != 0) {
+//    alarmDetailViewModel.getAlarm().observe(getViewLifecycleOwner(), (alarm) -> {
+//      this.alarm = alarm;
+//    });
+    if (alarm.getId() != 0L) {
+      alarmDetailViewModel.getAlarm().observe(getViewLifecycleOwner(), (alarm) -> {
+        this.alarm = alarm;
         alarmName.setText(alarm.getName());
         arrivalTimeSelected.setText(alarm.getArriveBy());
         bufferTime.setText(alarm.getBuffer());
         //TODO Figure out alarm location id vs string addresses
-      }
-    });
-
+      });
+    } else {
+      alarm = new Alarm();
+    }
   }
 
   @Override

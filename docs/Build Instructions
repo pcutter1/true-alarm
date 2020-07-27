@@ -1,0 +1,22 @@
+# To Build
+
+## Clone/Download the repository
+
+1. Find the [True Alarm](https://github.com/pcutter1/true-alarm) app on Github
+2. Click the `CODE` button and click 'Clone with SSH' and then copy the git@github address to the clipboard (this can be done by clicking the clipboard icon next to the address)
+3. Import the application directly from an IDE such as IntelliJ by selecting New Project -> 'Import From Version Control' and pasting the copied link.
+4. The Google Maps API SECTION
+  
+     4.1 This application requires a valid Google Maps API key to run properly.
+     In order to procure one, please follow the detailed steps listed on the Google Developers site [here](https://developers.google.com/maps/documentation/javascript/get-api-key).
+    
+     4.2 Once you have a valid API key, you will need to copy the key into a text editor in the following format on line 1
+    
+     `API_KEY=[YOUR_API_KEY]`
+     
+     Then save the file as a `.properties` file in a `/Desktop/projects/services` directory.
+     
+5. At this point you should be able to successfully build and run the True Alarm application. 
+     
+     
+     
