@@ -30,7 +30,7 @@ Traffic Modes:
 The Home Screen contains the list of alarms created by the user. 
 
 * To Add an Alarm
-    * To add an alarm, simply press the + button in the upper right corner
+    * To add an alarm, simply press the + button in the lower right corner
     
 * Modifying an Alarm
     * Pressing the Pencil Icon on an alarm will send you to that alarm's Details page where the user

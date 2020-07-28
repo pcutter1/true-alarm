@@ -40,7 +40,7 @@
       android:id="@+id/add_alarm"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:useCompatPadding="true"
       android:src="@drawable/ic_add_circle_outline_black_35dp"/>
