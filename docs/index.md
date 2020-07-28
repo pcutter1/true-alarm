@@ -58,13 +58,12 @@ Once the alarm goes off, pressing the STOP button will invoke the AlarmManager's
 
 
 #True-Alarm's Current State
-Sigh...
 Unfortunately True-Alarm's current state puts it in the "Paper Weight" category.
-As it currently stands, the app has a home view that displays the list of created alarms with textviews for  and a floating action button that takes you to an alarm details fragment where the user can create a new alarm.
+As it currently stands, the app has a home view that displays the list of created alarms with textviews for it's Name, Set Time, and Arrival Time at a destination. It has a floating action button that takes you to an alarm details fragment where the user can create a new alarm.
 Each alarm item has an edit button which takes you to the alarm details fragment for that particular alarm. 
-Each alarm item also has a delete button which deletes the alarm.
+Each alarm item also has a delete button which deletes the alarm - but this is not currently functioning. Clicking the button does nothing. 
 
-The alarm detail fragment contains editable fields for attributes of the alarm such as Name, Arrival Time, and Buffer time.
+The alarm detail fragment contains editable fields for attributes of the alarm such as Name, Arrival Time, and Buffer Time.
 It also has a SAVE button which saves these details to the current alarm and, if editing a new alarm, creates a new alarm and adds it to the home list, then returns the user to the home view. 
 Another feature is a Google Map that is integrated into the alarm detail fragment. This would be used eventually for vieweing the driving route and traffic conditions.
 
@@ -73,27 +72,24 @@ The app also currently requests necessary permissions such as accessing fine loc
 
 There are several unimplemented elements that fall into one of 3 categories of urgency:
 * High Priority
-    * BUG: App crashes when pressing the 'create new alarm' button.
-    * INCOMPLETE: App is currently unable to Read from/ Write to the database.
-    * INCOMPLETE: App is not currently reading the editable fields in the alarm details fragment. 
+    * INCOMPLETE: App's Delete Alarm button is not yet hooked up to delete an alarm from the database. 
     * INCOMPLETE: App is not currently set up to post/get information from Google Routes - is unable to get estimated commute time. 
     * INCOMPLETE: App is not currently connected to the android AlarmManager and is not set up to SET alarms.
     * INCOMPLETE: App does not currently have a working button to toggle an alarm on/off.
     * INCOMPLETE: App does not currently have a working button to turn an alarm off if it is going off.
     
     
-    
 * Medium Priority
-    * BUG: Current alarm detail fragment layout overlaps certain items while in landscape mode - potential fix is locking into vertical mode.
-    * BUG: TimePicker for selecting an arrival time currently is editable outside of the popup selector.
+    * BUG: Current alarm detail fragment layout overlaps certain items while in landscape mode - potential fix is locking the app into vertical mode.
     * INCOMPLETE: App does not have any current protocol for how often/when to check for changes in commute time.
     
 * Low Priority
     * Clean up code so that it presents in the same order between similar classes
-    * Ensure all string resources are extracted
+    * Ensure all string resources are extracted to the resource file. 
     
 Cosmetic Fixes:
 
+* Would prefer to have the "Leave By" time (once it is calculated) displayed on Home screen instead of selected Arrival time
 * Implement a text style for Names/Times
 * Create custom color schemes for light/dark themes
 * Re-space the alarm details layout to optimize the view

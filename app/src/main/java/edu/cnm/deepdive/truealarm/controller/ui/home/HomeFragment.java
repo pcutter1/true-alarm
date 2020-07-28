@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.cnm.deepdive.truealarm.R;
 import edu.cnm.deepdive.truealarm.controller.ui.home.HomeFragmentDirections.EditDetails;
+import edu.cnm.deepdive.truealarm.model.entity.Alarm;
 import edu.cnm.deepdive.truealarm.view.AlarmAdapter;
 import edu.cnm.deepdive.truealarm.viewmodel.HomeViewModel;
 
@@ -29,7 +30,7 @@ public class HomeFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_home, container, false);
     alarmList = view.findViewById(R.id.alarm_recycler_view);
     view.findViewById(R.id.add_alarm).setOnClickListener((v) -> editAlarm(0));
-    //   view.findViewById(R.id.delete).setOnClickListener((v) -> deleteAlarm);
+//    view.findViewById(R.id.delete).setOnClickListener((v) -> deleteAlarm);
     return view;
   }
 
@@ -39,8 +40,8 @@ public class HomeFragment extends Fragment {
     Navigation.findNavController(getView()).navigate(action);
   }
 
-//  private void deleteAlarm(long id) {
-//  }
+ // private void delete(long id) {
+ // }
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

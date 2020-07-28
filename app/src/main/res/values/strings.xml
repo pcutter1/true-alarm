@@ -31,17 +31,9 @@
   <string name="detail_nav">Details</string>
   <string name="settings_nav">Settings</string>
   <string name="alarm_title">ALARMS</string>
-  <string name="alarm_name">ALARM 1</string>
-  <string name="alarm2_name">ALARM 2</string>
-  <string name="alarm3_name">ALARM 3</string>
   <string name="title_alarm_details">Alarm Details</string>
   <string name="title_settings">Settings</string>
   <string name="alarm1_wake_time">8:30 AM</string>
-  <string name="alarm_leave_by">Arrival Time</string>
-  <string name="alarm2_wake_time">7:23 AM</string>
-  <string name="alarm2_leave_by">Leave By \n\n8:03 AM</string>
-  <string name="alarm3_wake_time">10:12 AM</string>
-  <string name="alarm3_leave_by">Leave By \n\n11:22 AM</string>
   <string name="edit_alarms">EDIT</string>
   <string name="create_alarm">SAVE</string>
   <string name="new_name">NAME</string>
