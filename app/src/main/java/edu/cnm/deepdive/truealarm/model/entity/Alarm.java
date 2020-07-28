@@ -43,10 +43,10 @@ public class Alarm {
   private int buffer = 0;
 
   @ColumnInfo(name = "start_location_id", index = true)
-  private long startLocationId;
+  private Long startLocationId;
 
   @ColumnInfo(name = "end_location_id", index = true)
-  private long endLocationId;
+  private Long endLocationId;
 
   public long getId() {
     return id;
@@ -88,19 +88,19 @@ public class Alarm {
     this.buffer = buffer;
   }
 
-  public long getStartLocationId() {
+  public Long getStartLocationId() {
     return startLocationId;
   }
 
-  public void setStartLocationId(long startLocation) {
+  public void setStartLocationId(Long startLocation) {
     this.startLocationId = startLocation;
   }
 
-  public long getEndLocationId() {
+  public Long getEndLocationId() {
     return endLocationId;
   }
 
-  public void setEndLocationId(long endLocation) {
+  public void setEndLocationId(Long endLocation) {
     this.endLocationId = endLocation;
   }
 

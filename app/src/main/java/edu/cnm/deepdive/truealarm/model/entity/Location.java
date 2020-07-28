@@ -7,6 +7,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.annotations.Expose;
 
 @Entity(
     indices = {@Index(value = {"name", "address"}, unique = true)}
@@ -70,6 +72,17 @@ public class Location {
     this.name = name;
   }
 
+  public static class GeoCode {
+
+    @Expose
+    private LatLng latLng;
+
+    public LatLng getLatLng() {return latLng;}
+    public void setLatLng(LatLng latLng) {
+      this.latLng = latLng;
+    }
+
+  }
 
   //TODO Figure out if I need these overrides.
   /*

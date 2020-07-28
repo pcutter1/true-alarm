@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.truealarm.viewmodel;
 
 import android.app.Application;
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -62,6 +63,7 @@ public class AlarmDetailViewModel extends AndroidViewModel {
         alarmRepository.save(alarm)
             .subscribe(
                 () -> {
+                  Log.d(getClass().getName(), "Save Completed");
                 },
                 (throwable) -> this.throwable.postValue(throwable.getCause())
             ));

@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -21,6 +23,7 @@ import edu.cnm.deepdive.truealarm.controller.DateTimePickerFragment.Mode;
 import edu.cnm.deepdive.truealarm.model.entity.Alarm;
 import edu.cnm.deepdive.truealarm.model.entity.Location;
 import edu.cnm.deepdive.truealarm.viewmodel.AlarmDetailViewModel;
+import java.text.DateFormat;
 import java.util.Calendar;
 
 public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
@@ -29,6 +32,8 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
   public static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
   private static final String ID_KEY = "alarm_id";
 
+  private DateFormat timeFormat;
+  private Calendar calendar;
   private long alarmId;
   private AlarmDetailViewModel alarmDetailViewModel;
   private Location location;
@@ -44,20 +49,11 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
   private AlertDialog dialog;
 
 
-  public static AlarmDetailFragment newInstance(long alarmId) {
-    AlarmDetailFragment fragment = new AlarmDetailFragment();
-    Bundle args = new Bundle();
-    args.putLong(ID_KEY, alarmId);
-    fragment.setArguments(args);
-    return fragment;
-  }
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (getArguments() != null) {
-      alarmId = getArguments().getLong(ID_KEY, 0);
-    }
+    alarmId = AlarmDetailFragmentArgs.fromBundle(getArguments()).getAlarmId();
+
   }
 
   @Override
@@ -67,7 +63,6 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
     mapView = view.findViewById(R.id.route_map);
     arrivalTimeSelected = view.findViewById(R.id.arrival_time_selected);
     arrivalTimeSelected.setOnClickListener((v) -> {
-      Calendar calendar = Calendar.getInstance(); //TODO Needs to come from what we're editing
       DateTimePickerFragment fragment = DateTimePickerFragment.createInstance(Mode.TIME, calendar);
       fragment.show(getChildFragmentManager(), fragment.getClass().getName());
     });
@@ -77,18 +72,23 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
     departAddress = view.findViewById(R.id.depart_address);
     arriveAddress = view.findViewById(R.id.arrival_address);
 
+    calendar = Calendar.getInstance();
+
     // commuteTime = //TODO Add commutetime logic
 
     view.findViewById(R.id.save).setOnClickListener((v) -> {
-      Alarm alarm = new Alarm();
       alarm.setName(editName.getText().toString().trim());
-      alarm.setBuffer(Integer.parseInt(bufferTime.getText().toString().trim()));
-      alarm.setArriveBy(Integer.parseInt(arrivalTimeSelected.getText().toString().trim()));
+      String bufferText = bufferTime.getText().toString().trim();
+      alarm.setBuffer(bufferText.isEmpty() ? 0 : Integer.parseInt(bufferText));
+      alarm.setArriveBy(calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE));
 //      alarm.setStartLocationId();
 //      alarm.setEndLocationId();
       alarmDetailViewModel.saveAlarm(alarm);
-      //TODO after save, navigate back to list of alarms
+      NavDirections action = AlarmDetailFragmentDirections.returnHome();
+      Navigation.findNavController(getView()).navigate(action);
     });
+
+
 
     initGoogleMap(savedInstanceState);
     return view;
@@ -123,20 +123,24 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
 
   @Override
   public void onChange(Calendar calendar) {
-    //TODO update time in current alarm
+    this.calendar = calendar;
+    arrivalTimeSelected.setText(timeFormat.format(calendar.getTime()));
   }
 
 
   @Override
   public void onViewCreated(@NonNull View view, Bundle saveInstanceState) {
     super.onViewCreated(view, saveInstanceState);
+    timeFormat = android.text.format.DateFormat.getTimeFormat(getContext());
     alarmDetailViewModel = new ViewModelProvider(getActivity()).get(AlarmDetailViewModel.class);
     if (alarmId != 0) {
       alarmDetailViewModel.getAlarm().observe(getViewLifecycleOwner(), (alarm) -> {
         this.alarm = alarm;
         editName.setText(alarm.getName());
-        arrivalTimeSelected.setText(alarm.getArriveBy());
-        bufferTime.setText(alarm.getBuffer());
+        calendar.set(Calendar.HOUR_OF_DAY, alarm.getArriveBy() / 60);
+        calendar.set(Calendar.MINUTE, alarm.getArriveBy() % 60);
+        arrivalTimeSelected.setText(timeFormat.format(calendar.getTime()));
+        bufferTime.setText(String.valueOf(alarm.getBuffer()));
         //TODO Figure out alarm location id vs string addresses
       });
       alarmDetailViewModel.setAlarmId(alarmId);
