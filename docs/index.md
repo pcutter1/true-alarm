@@ -73,6 +73,8 @@ The app also currently requests necessary permissions such as accessing fine loc
 There are several unimplemented elements that fall into one of 3 categories of urgency:
 * High Priority
     * INCOMPLETE: App's Delete Alarm button is not yet hooked up to delete an alarm from the database. 
+    * INCOMPLETE: App does not currently store Location information in the database
+    * INCOMPLETE: App does not currently parse Location information from String Addresses to LatLng format for Google Maps
     * INCOMPLETE: App is not currently set up to post/get information from Google Routes - is unable to get estimated commute time. 
     * INCOMPLETE: App is not currently connected to the android AlarmManager and is not set up to SET alarms.
     * INCOMPLETE: App does not currently have a working button to toggle an alarm on/off.
