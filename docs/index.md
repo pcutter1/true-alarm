@@ -57,7 +57,7 @@ Once the alarm goes off, pressing the STOP button will invoke the AlarmManager's
     > During the winter months, there's no telling if a storm that happens in the middle of the night is going to be a light dusting or plug the streets up with 2 feet of snow. If it's going to take extra time to get to school in the morning, I need to know so I can wake up with enough time to have a good breakfast before my exams."
 
 
-#True-Alarm's Current State
+# True-Alarm's Current State
 Unfortunately True-Alarm's current state puts it in the "Paper Weight" category.
 As it currently stands, the app has a home view that displays the list of created alarms with textviews for it's Name, Set Time, and Arrival Time at a destination. It has a floating action button that takes you to an alarm details fragment where the user can create a new alarm.
 Each alarm item has an edit button which takes you to the alarm details fragment for that particular alarm. 
@@ -140,6 +140,10 @@ True-Alarm uses the following dependencies:
 // Stetho (inspection) dependency
     implementation 'com.facebook.stetho:stetho:1.5.1'
 ```
+
+
+
+
 
 In its completed state, True Alarm requires the following persmissions:
   * INTERNET
