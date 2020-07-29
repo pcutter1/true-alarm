@@ -30,6 +30,10 @@ import edu.cnm.deepdive.truealarm.R;
 import edu.cnm.deepdive.truealarm.model.entity.Alarm;
 import java.util.List;
 
+/**
+ * AlarmDetailAdapter communicates with the AlarmDetailViewModel and sets information into the appropriate
+ * views in the alarm detail fragment layout. It extends ReyclcerView.Adapter.
+ */
 public class AlarmDetailAdapter extends RecyclerView.Adapter<AlarmDetailAdapter.Holder> {
 
   private final String unnamedAlarm;
@@ -37,7 +41,12 @@ public class AlarmDetailAdapter extends RecyclerView.Adapter<AlarmDetailAdapter.
   private final List<Alarm> alarms;
   private final OnCLickListener clickListener;
 
-
+  /**
+   * A constructor setting a context to and instantiating the private fields in the class
+   * @param context
+   * @param alarms
+   * @param clickListener
+   */
   public AlarmDetailAdapter(Context context,
       List<Alarm> alarms,
       OnCLickListener clickListener) {
@@ -66,6 +75,10 @@ public class AlarmDetailAdapter extends RecyclerView.Adapter<AlarmDetailAdapter.
     return alarms.size();
   }
 
+  /**
+   * Holder class contains the specific methods of identifying the views in the alarm detail layout
+   * and setting the appropriate values to those fields. It extends RecylcerView.ViewHolder
+   */
   class Holder extends RecyclerView.ViewHolder {
 
     private final View alarmDetailView;
@@ -74,6 +87,10 @@ public class AlarmDetailAdapter extends RecyclerView.Adapter<AlarmDetailAdapter.
     private final EditText alarmName;
     private final EditText bufferMinutes;
 
+    /**
+     * Holder method identfies the views in the alarm detail layout. It requires an alarmDetailView parameter
+     * @param alarmDetailView
+     */
     Holder(@NonNull View alarmDetailView) {
       super(alarmDetailView);
       this.alarmDetailView = alarmDetailView;
@@ -84,6 +101,12 @@ public class AlarmDetailAdapter extends RecyclerView.Adapter<AlarmDetailAdapter.
 
     }
 
+    /**
+     * Bind method is used to set the views in the alarm detail layout to values that are retrieved
+     * from the Alarm entity. Because it part of a RecyclerView, it requires a position as a parameter
+     * to identify which alarm to display
+     * @param position
+     */
     private void bind(int position) {
       Alarm alarm = AlarmDetailAdapter.this.alarms.get(position);
       String name =

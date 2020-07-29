@@ -40,6 +40,13 @@ public class AlarmAdapter extends RecyclerView.Adapter<Holder> {
   private final OnEditListener onEditListener;
   private final OnDeleteListener onDeleteListener;
 
+  /**
+   * A constructor which provides a context to and instantiates the private fields in this class
+   * @param context
+   * @param alarms
+   * @param onEditListener
+   * @param onDeleteListener
+   */
   public AlarmAdapter(Context context,
       List<Alarm> alarms,
       OnEditListener onEditListener,
@@ -68,6 +75,10 @@ public class AlarmAdapter extends RecyclerView.Adapter<Holder> {
     return alarms.size();
   }
 
+  /**
+   * Holder class contains the specific methods of identifying the views in the home layout
+   * and setting the appropriate values to those fields. It extends RecylcerView.ViewHolder
+   */
   class Holder extends RecyclerView.ViewHolder {
 
     private final View alarmView;
@@ -78,6 +89,10 @@ public class AlarmAdapter extends RecyclerView.Adapter<Holder> {
     private final View edit;
     private final View delete;
 
+    /**
+     * Holder method identfies the views and buttons in the home layout. It requires an alarmView parameter
+     * @param alarmView
+     */
     public Holder(@NonNull View alarmView) {
       super(alarmView);
       this.alarmView = alarmView;
@@ -88,7 +103,13 @@ public class AlarmAdapter extends RecyclerView.Adapter<Holder> {
       delete = alarmView.findViewById(R.id.delete);
       arrivalTime = alarmView.findViewById(R.id.arrival_time_selected);
     }
-
+    /**
+     * Bind method is used to set the views in the alarm detail layout to values that are retrieved
+     * from the Alarm entity. Because it part of a RecyclerView, it requires a position as a parameter
+     * to identify which alarm to display. Because arrivalTime is set in the database as number of minutes in the day,
+     * it needs to be formatted from Hour/Minute format to fit the specified input in the database for arrivalTime.
+     * @param position
+     */
     private void bind(int position) {
       Alarm alarm = alarms.get(position);
       Calendar calendar = Calendar.getInstance();
