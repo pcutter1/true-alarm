@@ -28,6 +28,10 @@ import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 
+/**
+ * Provides methods for saving and retrieving objects from the database in conjunction with the Alarm
+ * Dao.
+ */
 public class AlarmRepository {
 
   private final Context context;
@@ -35,7 +39,10 @@ public class AlarmRepository {
   private final AlarmDao alarmDao;
   private final LocationDao locationDao;
 
-
+  /**
+   * Constructor for the private fields to be instantiated with the current context.
+   * @param context
+   */
   public AlarmRepository(Context context) {
     this.context = context;
     database = AlarmDatabase.getInstance();
@@ -43,13 +50,26 @@ public class AlarmRepository {
     locationDao = database.getLocationDao();
   }
 
+  /**
+   *
+   * @return a livedata list of all alarms in the Alarm Dao
+   */
   public LiveData<List<Alarm>> getAll() {return alarmDao.selectAll();}
 
+  /**
+   * Takes a @param id of an alarm and returns that specific alarm from the database
+   * @return a single alarm
+   */
   public Single<Alarm> get(long id) {
     return alarmDao.selectById(id)
         .subscribeOn(Schedulers.io());
   }
 
+  /**
+   * When an Alarm object is passed through the save method, it checks to see if this is an existing alarm or a new alarm
+   * If it is an existing alarm, it updates that alarm based on its ID, otherwise it inserts a new alarm.
+   * @param alarm
+   */
   public Completable save(Alarm alarm) {
     if (alarm.getId() == 0) {
       return Completable.fromSingle(alarmDao.insert(alarm))
@@ -60,6 +80,12 @@ public class AlarmRepository {
     }
   }
 
+  /**
+   * When an alarm is passed through the delete method, the method checks to see if this is an existing
+   * alarm based on its ID. If the alarm is a new alarm with ID 0, then the method does nothing. Otherwise
+   * it deletes the alarm from the database
+   * @param alarm
+   */
   public Completable delete (Alarm alarm) {
     if (alarm.getId() == 0) {
       return Completable.fromAction(() -> {})

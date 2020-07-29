@@ -50,12 +50,17 @@ import edu.cnm.deepdive.truealarm.viewmodel.HomeViewModel;
 import java.util.Calendar;
 import java.util.LinkedList;
 
+/**
+ * The primary function of the code in this class is for setting up the application and requesting
+ * the necessary permissions that the application requires.
+ */
 public class MainActivity extends AppCompatActivity {
 
 
   private static final int PERMISSIONS_REQUEST_CODE = 999;
   private final PermissionsService permissionsService = PermissionsService.getInstance();
   AlarmManager alarmManager;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +81,10 @@ public class MainActivity extends AppCompatActivity {
     alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
   }
 
-
+  /**
+   * Checks the permissions @param requestCode against a predefined request code. Upon a match, it updates the current user
+   * @param permissions
+   */
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
       @NonNull int[] grantResults) {
@@ -87,12 +95,14 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
+  /**
+   * Observes a flag indicating whether permissions have been checked previously.
+   * If permissions have not yet been checked, it will check them, then set the flag accordingly.
+   */
 
   private void checkPermissionsOnce() {
     HomeViewModel viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-    // Observe a flag indicating whether permissions have been checked previously.
     viewModel.getPermissionsChecked().observe(this, (checked) -> {
-      // If permissions have not yet been checked, do so; then set the flag accordingly.
       if (!checked) {
         viewModel.setPermissionsChecked(true);
         permissionsService.checkPermissions(this, PERMISSIONS_REQUEST_CODE);

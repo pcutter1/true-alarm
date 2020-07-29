@@ -36,6 +36,12 @@ import edu.cnm.deepdive.truealarm.model.entity.Alarm;
 import edu.cnm.deepdive.truealarm.view.AlarmAdapter;
 import edu.cnm.deepdive.truealarm.viewmodel.HomeViewModel;
 
+/**
+ * This is the home screen for the application. From here you view a list of all currently existing alarms
+ * which are displayed with a recyclerview. There is a floating action button which sends the User to
+ * the AlarmDetails fragment where they can create a new alarm.
+ */
+
 public class HomeFragment extends Fragment {
 
   AlarmManager alarmManager;
@@ -43,6 +49,9 @@ public class HomeFragment extends Fragment {
   private HomeViewModel homeViewModel;
   private PendingIntent pendingIntent;
 
+  /**
+   * Current setup code which shows an alarm in its set layout enables an edit button on each alarm
+   */
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -51,6 +60,11 @@ public class HomeFragment extends Fragment {
 //    view.findViewById(R.id.delete).setOnClickListener((v) -> deleteAlarm);
     return view;
   }
+
+  /**
+   * Sends the user to the {@link edu.cnm.deepdive.truealarm.controller.ui.alarmdetail.AlarmDetailFragment}
+   * and uses the @param id of the current alarm so that the proper data is pulled to be edited.
+   */
 
   private void editAlarm(long id) {
     EditDetails action = HomeFragmentDirections.editDetails();

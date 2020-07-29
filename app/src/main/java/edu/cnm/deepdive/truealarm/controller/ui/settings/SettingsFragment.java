@@ -34,7 +34,10 @@ import androidx.lifecycle.ViewModelProviders;
 import edu.cnm.deepdive.truealarm.R;
 import edu.cnm.deepdive.truealarm.viewmodel.SettingsViewModel;
 
-
+/**
+ * Not currently used, but this is intended to be a global user settings fragment. From here the
+ * user can change the ringtone of an alarm, set traffic mode to optimist/pessimist, and enable/disable snooze.
+ */
 public class SettingsFragment extends Fragment implements OnItemSelectedListener {
 
   private SettingsViewModel settingsViewModel;

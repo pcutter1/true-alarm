@@ -32,6 +32,11 @@ import edu.cnm.deepdive.truealarm.model.entity.Location;
 import edu.cnm.deepdive.truealarm.service.AlarmDatabase.Converters;
 import java.util.Date;
 
+/**
+ * AlarmDatabase extends RoomDatabase. It contains the Alarm and Location entities.
+ * It also contains methods for converting Date objects to type Long and Long values to Date types.
+ */
+
 @Database(
     entities = {Alarm.class, Location.class},
     version = 1,
@@ -44,14 +49,29 @@ public abstract class AlarmDatabase extends RoomDatabase {
 
   private static Application context;
 
+  /**
+   * Takes the application @param context and sets it as the current context for the database
+   */
   public static void setContext(Application context) {
     AlarmDatabase.context = context;
   }
 
+  /**
+   *
+   * @return the Alarm Dao
+   */
   public abstract AlarmDao getAlarmDao();
 
+  /**
+   *
+   * @return the Location Dao
+   */
   public abstract LocationDao getLocationDao();
 
+  /**
+   *
+   * @return an INSTANCE of the current database
+   */
   public static AlarmDatabase getInstance() {
     return InstanceHolder.INSTANCE;
   }
@@ -62,13 +82,24 @@ public abstract class AlarmDatabase extends RoomDatabase {
         Room.databaseBuilder(context, AlarmDatabase.class, DB_NAME).build();
   }
 
+  /**
+   * Converters that change Date objects to Long values and Long values to Date types.
+   */
   public static class Converters {
 
+    /**
+     * Takes a @param Date value and as long as that value is not null, it will convert it and @return a Long
+     * value, otherwise it will @return null.
+     */
     @TypeConverter
     public static Long dateToLong(Date value) {
       return (value != null) ? value.getTime() : null;
     }
 
+    /**
+     * Takes a @param Long value and if that value is not null, it will convert and @return a Date value
+     * otherwise it will @return null.
+     */
     @TypeConverter
     public static Date longToDate(Long value) {
       return (value != null) ? new Date(value) : null;

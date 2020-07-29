@@ -23,6 +23,10 @@ import com.facebook.stetho.Stetho;
 import edu.cnm.deepdive.truealarm.service.AlarmDatabase;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * The TrueAlarmApplication class. It extends the Applicaiton class and sets the current database context
+ * to this, then gets an instance of it.
+ */
 public class TrueAlarmApplication extends Application {
 
   @Override

@@ -32,6 +32,10 @@ import edu.cnm.deepdive.truealarm.service.AlarmRepository;
 import io.reactivex.disposables.CompositeDisposable;
 import java.util.List;
 
+/**
+ * HomeViewModel communicates with Alarm Repository and HomeFragment to retrieve and delete alarms. It also contains
+ * methods which indicate whether or not persmissions have been checked.
+ */
 public class HomeViewModel extends AndroidViewModel implements LifecycleObserver {
 
   private MutableLiveData<Alarm> alarm_item;
@@ -41,6 +45,10 @@ public class HomeViewModel extends AndroidViewModel implements LifecycleObserver
   private final CompositeDisposable pending;
   private final MutableLiveData<Boolean> permissionsChecked;
 
+  /**
+   * A constructor which instantiates the private fields in this class.
+   * Takes a @param application
+   */
   public HomeViewModel(@NonNull Application application) {
    super(application);
    alarm_item = new MutableLiveData<Alarm>();
@@ -51,16 +59,31 @@ public class HomeViewModel extends AndroidViewModel implements LifecycleObserver
    permissionsChecked = new MutableLiveData<>(false);
   }
 
+  /**
+   *
+   * @return true if permissions have been checked
+   */
   public LiveData<Boolean> getPermissionsChecked() {
     return permissionsChecked;
   }
 
+  /**
+   * Sets boolean value indicating whether or not permissions have been checked
+   * @param checked
+   */
   public void setPermissionsChecked(boolean checked) {
     permissionsChecked.setValue(checked);}
 
+  /**
+   *
+   * @return a livedata list of Alarm objects from the Alarm Repository
+   */
   public LiveData<List<Alarm>> getAlarms() {return alarmRepository.getAll();}
 
-
+  /**
+   * Deletes an alarm object from the repository
+   * @param alarm
+   */
   public void deleteAlarm(Alarm alarm) {
     throwable.setValue(null);
     pending.add(

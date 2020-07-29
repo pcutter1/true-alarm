@@ -44,6 +44,11 @@ import edu.cnm.deepdive.truealarm.viewmodel.AlarmDetailViewModel;
 import java.text.DateFormat;
 import java.util.Calendar;
 
+/**
+ * * AlarmDetailFragment is a detailed view at the elements of a single Alarm.
+ *  * Here the User can edit the Name, Buffer Time, Arrival Time, Start/End Locations of an alarm.
+ *  * This is also where the User is taken to create a new alarm.
+ */
 public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
     DateTimePickerFragment.OnChangeListener {
 
@@ -66,7 +71,10 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
   private TextView commuteTime;
   private AlertDialog dialog;
 
-
+  /**
+   *
+   * @param savedInstanceState
+   */
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -74,6 +82,11 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
 
   }
 
+  /**
+   * General setup for the connecting the AlarmDetail layout with the controller and viewmodel.
+   * Inflates the fragment alarm detail layout and sets up the {@link DateTimePickerFragment} for selecting
+   * an arrival time. It also enables the Save button functionality saving any edited fields to the database.
+   */
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
@@ -145,7 +158,10 @@ public class AlarmDetailFragment extends Fragment implements OnMapReadyCallback,
     arrivalTimeSelected.setText(timeFormat.format(calendar.getTime()));
   }
 
-
+  /**
+   * The code that controls whether or not the AlarmDetail view is importing data from an existing alarm with an ID
+   * or if it is creating a new alarm from scratch.
+   */
   @Override
   public void onViewCreated(@NonNull View view, Bundle saveInstanceState) {
     super.onViewCreated(view, saveInstanceState);

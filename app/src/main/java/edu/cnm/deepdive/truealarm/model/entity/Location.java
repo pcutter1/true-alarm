@@ -28,6 +28,13 @@ import androidx.room.PrimaryKey;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.annotations.Expose;
 
+/**
+ * The Location entity class. It logs attributes about locations used for starting and ending addresses
+ * and stores them locally to the database. Location can be indexed by Name and Address, which are each unique
+ * attributes. Its primary key is an auto-generated ID of type long.
+ */
+
+
 @Entity(
     indices = {@Index(value = {"name", "address"}, unique = true)}
 )
@@ -50,57 +57,97 @@ public class Location {
   @ColumnInfo(collate = ColumnInfo.NOCASE)
   private String name;
 
+  /**
+   * @returns a location ID
+   */
+
   public long getId() {
     return id;
   }
 
+  /**
+   * Sets the location ID
+   * @param id
+   */
   public void setId(long id) {
     this.id = id;
   }
 
+  /**
+   *
+   * @returns the latitude of a location in double format
+   */
   public double getLatitude() {
     return latitude;
   }
 
+  /**
+   * Sets the latitude of a location when given a
+   * @param latitude
+   */
   public void setLatitude(double latitude) {
     this.latitude = latitude;
   }
 
+  /**
+   *
+   * @returns the longitude of a location in double format
+   */
   public double getLongitude() {
     return longitude;
   }
 
+  /**
+   * Sets the longitude of a location when given a
+   * @param longitude
+   */
   public void setLongitude(double longitude) {
     this.longitude = longitude;
   }
 
+  /**
+   *
+   * @returns the String address of a location
+   */
   public String getAddress() {
     return address;
   }
 
+  /**
+   * Sets the String address of a location when provided a
+   * @param address
+   */
   public void setAddress(String address) {
     this.address = address;
   }
 
+  /**
+   *
+   * @returns the String name of a location e.g. School or Work if existent.
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Sets the name of a location in String format e.g. Home or Work when provided with a
+   * @param name
+   */
   public void setName(String name) {
     this.name = name;
   }
 
-  public static class GeoCode {
-
-    @Expose
-    private LatLng latLng;
-
-    public LatLng getLatLng() {return latLng;}
-    public void setLatLng(LatLng latLng) {
-      this.latLng = latLng;
-    }
-
-  }
+//  public static class GeoCode {
+//
+//    @Expose
+//    private LatLng latLng;
+//
+//    public LatLng getLatLng() {return latLng;}
+//    public void setLatLng(LatLng latLng) {
+//      this.latLng = latLng;
+//    }
+//
+//  }
 
   //TODO Figure out if I need these overrides.
   /*

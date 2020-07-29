@@ -30,6 +30,10 @@ import edu.cnm.deepdive.truealarm.service.AlarmRepository;
 import edu.cnm.deepdive.truealarm.service.LocationRepository;
 import io.reactivex.disposables.CompositeDisposable;
 
+/**
+ * AlarmDetailViewModel communicates with Alarm Repository and AlarmDetailFragment to retrieve, save, and delete alarms.
+ */
+
 public class AlarmDetailViewModel extends AndroidViewModel {
 
   private final LocationRepository locationRepository;
@@ -38,6 +42,10 @@ public class AlarmDetailViewModel extends AndroidViewModel {
   private final MutableLiveData<Throwable> throwable;
   private final CompositeDisposable pending;
 
+  /**
+   * A constructor which instantiates the private fields for this class
+   * @param application
+   */
   public AlarmDetailViewModel(@NonNull Application application) {
     super(application);
     alarmRepository = new AlarmRepository(application);
@@ -47,15 +55,25 @@ public class AlarmDetailViewModel extends AndroidViewModel {
     locationRepository = new LocationRepository(application);
   }
 
+  /**
+   *
+   * @return a livedata Alarm object to be ported to the AlarmDetailFragment
+   */
   public LiveData<Alarm> getAlarm() {
     return alarm;
   }
 
+  /**
+   *
+   * @return a livedata Throwable object
+   */
   public LiveData<Throwable> getThrowable() {
     return throwable;
   }
 
-
+  /**
+   * Takes a @param alarmId and retrieves the associated alarm from the Alarm Repository
+   */
   public void fetch(long alarmId) {
     alarmRepository.get(alarmId)
         .subscribe(
@@ -64,6 +82,10 @@ public class AlarmDetailViewModel extends AndroidViewModel {
         );
   }
 
+  /**
+   * Sets an alarm's id
+   * @param id
+   */
   public void setAlarmId(long id) {
     throwable.setValue(null);
     pending.add(
@@ -75,6 +97,10 @@ public class AlarmDetailViewModel extends AndroidViewModel {
     );
   }
 
+  /**
+   * Saves an alarm edited or created in the AlarmDetailFragment to the Alarm Repository
+   * @param alarm
+   */
   public void saveAlarm(Alarm alarm) {
     throwable.setValue(null);
     pending.add(
