@@ -196,3 +196,4 @@ This application would not be able to function, however, without the AlarmManage
 
 * [Room Database](https://github.com/pcutter1/true-alarm/blob/master/app/src/main/java/edu/cnm/deepdive/truealarm/service/AlarmDatabase.java)
 * [SQLite DDL](ddl.md)
+
