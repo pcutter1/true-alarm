@@ -25,22 +25,6 @@
   tools:context=".controller.ui.alarmdetail.AlarmDetailFragment">
 
 
-  <TextView
-    android:id="@+id/alarm_detail_spinner"
-    android:layout_width="100dp"
-    android:layout_height="wrap_content"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    />
-
-  <Button
-    android:id="@+id/delete"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    />
-
 <FrameLayout
   android:id="@+id/map_container"
   android:layout_width="match_parent"
@@ -135,8 +119,8 @@
     app:hintAnimationEnabled="true"
     android:hint="@string/arrival_time"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/guideline"
-    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/arrival_address"
+    app:layout_constraintBottom_toTopOf="@id/buffer_time_title"
     >
 
     <com.google.android.material.textfield.TextInputEditText
@@ -164,7 +148,7 @@
     android:layout_marginTop="10dp"
     android:text="@string/buffer_time_title"
     android:textAlignment="center"
-    android:textSize="20sp"
+    android:textSize="15sp"
     app:layout_constraintBottom_toTopOf="@id/buffer_minutes_selected"
     app:layout_constraintStart_toStartOf="parent"/>
 
@@ -177,6 +161,7 @@
     android:textSize="20sp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintBottom_toTopOf="@id/edit_name"
+    app:layout_constraintTop_toBottomOf="@id/arrival_time_layout"
     android:hint="@string/buffer_hint"
     android:inputType="number"
     android:layout_marginBottom="8dp"/>

@@ -93,7 +93,6 @@ public class AlarmRepository {
     } else {
       return Completable.fromSingle(alarmDao.delete(alarm))
           .subscribeOn(Schedulers.io());
-
     }
   }
 
